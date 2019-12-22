@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0B76FE1118D534B3F1CAE221 /* Pods_Generics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B6E4722D62324CF4DE5992 /* Pods_Generics.framework */; };
+		0E3F5F1823AF2DEF00E83A0D /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3F5F1723AF2DEF00E83A0D /* HomeVM.swift */; };
+		0E3F5F1A23AF2DFE00E83A0D /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3F5F1923AF2DFE00E83A0D /* HomeVC.swift */; };
 		0EDCB7E223ADEA71007229FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDCB7E123ADEA71007229FF /* AppDelegate.swift */; };
 		0EDCB7E423ADEA71007229FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDCB7E323ADEA71007229FF /* SceneDelegate.swift */; };
 		0EDCB7E623ADEA71007229FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDCB7E523ADEA71007229FF /* ViewController.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E3F5F1723AF2DEF00E83A0D /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
+		0E3F5F1923AF2DFE00E83A0D /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		0EDCB7DE23ADEA71007229FF /* Generics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Generics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDCB7E123ADEA71007229FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EDCB7E323ADEA71007229FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +97,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E3F5F1523AF2DBF00E83A0D /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0E3F5F1923AF2DFE00E83A0D /* HomeVC.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		0E3F5F1623AF2DCD00E83A0D /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				0E3F5F1723AF2DEF00E83A0D /* HomeVM.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		0EDCB7D523ADEA71007229FF = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +138,8 @@
 		0EDCB7E023ADEA71007229FF /* Generics */ = {
 			isa = PBXGroup;
 			children = (
+				0E3F5F1623AF2DCD00E83A0D /* View Model */,
+				0E3F5F1523AF2DBF00E83A0D /* View Controller */,
 				0EDCB7E123ADEA71007229FF /* AppDelegate.swift */,
 				0EDCB7E323ADEA71007229FF /* SceneDelegate.swift */,
 				0EDCB7E523ADEA71007229FF /* ViewController.swift */,
@@ -168,7 +190,6 @@
 				88866693C67ADE3106262270 /* Pods-GenericsTests.debug.xcconfig */,
 				AF4686A70835C8AC46714D9D /* Pods-GenericsTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -412,7 +433,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EDCB7E623ADEA71007229FF /* ViewController.swift in Sources */,
+				0E3F5F1823AF2DEF00E83A0D /* HomeVM.swift in Sources */,
 				0EDCB7EC23ADEA71007229FF /* Generics.xcdatamodeld in Sources */,
+				0E3F5F1A23AF2DFE00E83A0D /* HomeVC.swift in Sources */,
 				0EDCB7E223ADEA71007229FF /* AppDelegate.swift in Sources */,
 				0EDCB7E423ADEA71007229FF /* SceneDelegate.swift in Sources */,
 			);
