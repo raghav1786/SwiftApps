@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../ReusableUI/ReusableUI.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Generics.xcodeproj">
    </FileRef>
    <FileRef
