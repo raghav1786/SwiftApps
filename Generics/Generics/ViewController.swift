@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReusableUI
 
 class ViewController: UIViewController,UITableViewDataSource {
     
@@ -34,7 +35,7 @@ extension ViewController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! UserInfoTableViewCell
         cell.textLabel?.text = items[indexPath.row]
         return cell
     }
