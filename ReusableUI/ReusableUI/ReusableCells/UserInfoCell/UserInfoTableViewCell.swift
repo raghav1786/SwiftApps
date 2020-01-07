@@ -11,10 +11,10 @@ import UIKit
 
 public struct UserInfo {
     let name : String?
-    let phone : Int32?
+    let phone : Int64?
     let address : String?
     
-    public init(name: String?,phone: Int32?,address: String?) {
+    public init(name: String?,phone: Int64?,address: String?) {
         self.name = name
         self.phone = phone
         self.address = address
@@ -34,6 +34,7 @@ public  class UserInfoTableViewCell : BaseCell {
     @IBOutlet weak var descriptionLabel : UILabel?
     
     override public func configureWithModel(_ cellModel: CellModel) {
+        super.configureWithModel(cellModel)
         guard  let cellModel = cellModel as? UserInfoTableViewCellModel else {
             return
         }

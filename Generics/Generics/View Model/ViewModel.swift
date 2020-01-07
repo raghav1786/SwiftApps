@@ -11,9 +11,14 @@ import ReusableUI
 
 struct ViewModel  {
     let dataSource : DataSource = DataSource()
-    let userInfo : UserInfo?
     
     func configureData() {
+        var rowItems : [TableViewCompatible] = []
+        let userInformation = UserInfo(name: "Raghav", phone: 7589244460, address: "Megapolis Mystic")
+        let userInformationTableViewCellModel = UserInfoTableViewCellModel(referenceContent: userInformation)
+        rowItems.append(userInformationTableViewCellModel)
         
+        let section = BaseTableViewSection(sortOrder: 0, items: rowItems)
+        dataSource.sections.append(section)
     }
 }
