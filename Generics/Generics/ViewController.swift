@@ -9,35 +9,22 @@
 import UIKit
 import ReusableUI
 
-class ViewController: UIViewController,UITableViewDataSource {
+class ViewController: UIViewController,UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    var items : [String] = ["Item1","Item2","Item3","Item4","Item5"]
+    
+    //properties
+    var viewModel : ViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = ViewModel()
+        viewModel?.configureData()
         // Do any additional setup after loading the view.
-        tableView.dataSource = self
         tableView.delegate = self
+        tableView.registerCustomFrameWorkCells(identifiers: [CellIdentifiers.UserInfoTableViewCell.rawValue])
+        tableView.dataSource = viewModel?.dataSource
         tableView.reloadData()
     }
-    
-    
-    
-
 
 }
-
-extension ViewController : UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        items.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! UserInfoTableViewCell
-        cell.textLabel?.text = items[indexPath.row]
-        return cell
-    }
-}
-
