@@ -20,24 +20,7 @@ class ViewController: UIViewController,UITableViewDataSource {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.reloadData()
+        tableView.registerCustomCells(identifiers: [CellIdentifiers.UserInfoTableViewCell.rawValue])
     }
-    
-    
-    
-
 
 }
-
-extension ViewController : UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        items.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! UserInfoTableViewCell
-        cell.textLabel?.text = items[indexPath.row]
-        return cell
-    }
-}
-

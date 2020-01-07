@@ -18,39 +18,15 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mjA-Yu-fSq">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="117" id="cM3-gx-l95">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="117"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cM3-gx-l95" id="fxG-uU-Ijh">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="117"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6f8-XK-lFu">
-                                                    <rect key="frame" x="20" y="48" width="374" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="6f8-XK-lFu" secondAttribute="bottom" constant="37" id="7fC-LE-8rn"/>
-                                                <constraint firstItem="6f8-XK-lFu" firstAttribute="top" secondItem="fxG-uU-Ijh" secondAttribute="topMargin" constant="37" id="8lm-kL-hAj"/>
-                                                <constraint firstItem="6f8-XK-lFu" firstAttribute="centerX" secondItem="fxG-uU-Ijh" secondAttribute="centerX" id="FdQ-0e-5cL"/>
-                                                <constraint firstItem="6f8-XK-lFu" firstAttribute="leading" secondItem="fxG-uU-Ijh" secondAttribute="leadingMargin" id="KiE-lw-RqM"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="NAE-lh-D84"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="v6N-F7-qb3"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="jl4-gd-4CT"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="mjA-Yu-fSq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" symbolic="YES" id="6GV-ks-p8z"/>
+                            <constraint firstItem="mjA-Yu-fSq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="6GV-ks-p8z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mjA-Yu-fSq" secondAttribute="trailing" id="I5C-gM-GQT"/>
                             <constraint firstItem="mjA-Yu-fSq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="egx-9Y-64X"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mjA-Yu-fSq" secondAttribute="bottom" id="fJR-b9-kdO"/>

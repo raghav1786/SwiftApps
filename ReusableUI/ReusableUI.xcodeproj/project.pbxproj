@@ -13,6 +13,8 @@
 		0E7E31AA23AFCBDF00B37C91 /* ReusableUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E7E319C23AFCBDF00B37C91 /* ReusableUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0E7E31B623AFCC2000B37C91 /* UserInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E7E31B523AFCC2000B37C91 /* UserInfoTableViewCell.xib */; };
 		0E7E31B823AFCC3300B37C91 /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7E31B723AFCC3300B37C91 /* UserInfoTableViewCell.swift */; };
+		0ED3E38523C4FC1D00795E5E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3E38423C4FC1D00795E5E /* Constants.swift */; };
+		0ED3E38823C5003A00795E5E /* UIScrollView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3E38723C5003A00795E5E /* UIScrollView+Extended.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,8 @@
 		0E7E31A923AFCBDF00B37C91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E7E31B523AFCC2000B37C91 /* UserInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInfoTableViewCell.xib; sourceTree = "<group>"; };
 		0E7E31B723AFCC3300B37C91 /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
+		0ED3E38423C4FC1D00795E5E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0ED3E38723C5003A00795E5E /* UIScrollView+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extended.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,10 +81,12 @@
 		0E7E319B23AFCBDF00B37C91 /* ReusableUI */ = {
 			isa = PBXGroup;
 			children = (
+				0ED3E38623C4FFB800795E5E /* Extensions */,
 				0E7E31B323AFCBE800B37C91 /* ReusableCells */,
 				0E7E319C23AFCBDF00B37C91 /* ReusableUI.h */,
 				0E7E319D23AFCBDF00B37C91 /* Info.plist */,
 				0E20782523B26E51000F11EC /* TableViewManager.swift */,
+				0ED3E38423C4FC1D00795E5E /* Constants.swift */,
 			);
 			path = ReusableUI;
 			sourceTree = "<group>";
@@ -109,6 +115,14 @@
 				0E7E31B723AFCC3300B37C91 /* UserInfoTableViewCell.swift */,
 			);
 			path = UserInfoCell;
+			sourceTree = "<group>";
+		};
+		0ED3E38623C4FFB800795E5E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0ED3E38723C5003A00795E5E /* UIScrollView+Extended.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +238,8 @@
 			files = (
 				0E7E31B823AFCC3300B37C91 /* UserInfoTableViewCell.swift in Sources */,
 				0E20782623B26E51000F11EC /* TableViewManager.swift in Sources */,
+				0ED3E38823C5003A00795E5E /* UIScrollView+Extended.swift in Sources */,
+				0ED3E38523C4FC1D00795E5E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
