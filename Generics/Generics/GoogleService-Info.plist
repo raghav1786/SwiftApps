@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>564672519037-4ue4gc8sj3tsgq8u9j62bhas2fa8edeb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.564672519037-4ue4gc8sj3tsgq8u9j62bhas2fa8edeb</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCmZvdP5F014N5bCvdrV6vdGW7bJ7kPcIw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>564672519037</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>raghav.Generics</string>
+	<key>PROJECT_ID</key>
+	<string>test-demo-vvaqvb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>test-demo-vvaqvb.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:564672519037:ios:98e2821ca7bad9ec930a14</string>
+	<key>DATABASE_URL</key>
+	<string>https://test-demo-vvaqvb.firebaseio.com</string>
+</dict>
+</plist>

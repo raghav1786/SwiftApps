@@ -22,6 +22,7 @@
 		0EDCB7F123ADEA72007229FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EDCB7EF23ADEA72007229FF /* LaunchScreen.storyboard */; };
 		0EDCB7FC23ADEA72007229FF /* GenericsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDCB7FB23ADEA72007229FF /* GenericsTests.swift */; };
 		0EDCB80723ADEA72007229FF /* GenericsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDCB80623ADEA72007229FF /* GenericsUITests.swift */; };
+		0EF651A423C583220081D3B8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0EF651A323C583220081D3B8 /* GoogleService-Info.plist */; };
 		57BCC0C49751F1CDBFA48845 /* Pods_Generics_GenericsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DDC27AFFB2533D75F5E36AC /* Pods_Generics_GenericsUITests.framework */; };
 		6756A6DD3861C5F37F060DEB /* Pods_GenericsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442056D4564A5D1A9C1E0E1F /* Pods_GenericsTests.framework */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,7 @@
 		0EDCB80223ADEA72007229FF /* GenericsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenericsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EDCB80623ADEA72007229FF /* GenericsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericsUITests.swift; sourceTree = "<group>"; };
 		0EDCB80823ADEA72007229FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EF651A323C583220081D3B8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1DDC27AFFB2533D75F5E36AC /* Pods_Generics_GenericsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Generics_GenericsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		442056D4564A5D1A9C1E0E1F /* Pods_GenericsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GenericsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C07EAD779139D5A546F07CC /* Pods-Generics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Generics.release.xcconfig"; path = "Target Support Files/Pods-Generics/Pods-Generics.release.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		0EDCB7E023ADEA71007229FF /* Generics */ = {
 			isa = PBXGroup;
 			children = (
+				0EF651A323C583220081D3B8 /* GoogleService-Info.plist */,
 				0E3F5F1623AF2DCD00E83A0D /* View Model */,
 				0E3F5F1523AF2DBF00E83A0D /* View Controller */,
 				0EDCB7E123ADEA71007229FF /* AppDelegate.swift */,
@@ -326,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EDCB7F123ADEA72007229FF /* LaunchScreen.storyboard in Resources */,
+				0EF651A423C583220081D3B8 /* GoogleService-Info.plist in Resources */,
 				0EDCB7EE23ADEA72007229FF /* Assets.xcassets in Resources */,
 				0EDCB7E923ADEA71007229FF /* Main.storyboard in Resources */,
 			);
@@ -635,7 +639,9 @@
 			baseConfigurationReference = 93B34D50689807B954D48961 /* Pods-Generics.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Generics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -643,6 +649,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = raghav.Generics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -653,7 +660,9 @@
 			baseConfigurationReference = 4C07EAD779139D5A546F07CC /* Pods-Generics.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Generics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -661,6 +670,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = raghav.Generics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
