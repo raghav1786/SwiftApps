@@ -12,6 +12,8 @@ import ReusableUI
 struct ViewModel  {
     let dataSource : DataSource = DataSource()
     
+    
+    //configure data into ViewModel for custom Cell used in tableView
     func configureData() {
         var rowItems : [TableViewCompatible] = []
         let userInformation = UserInfo(name: "Raghav", phone: 7589244460, address: "Megapolis Mystic")

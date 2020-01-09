@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//added structure for adding Details of user
 public struct UserInfo {
     let name : String?
     let phone : Int64?
@@ -20,7 +21,7 @@ public struct UserInfo {
         self.address = address
     }
 }
-
+//appending data using data model
 public  class UserInfoTableViewCellModel : CellModel {
     public var referenceContent : UserInfo?
     public init(referenceContent : UserInfo) {
@@ -28,7 +29,7 @@ public  class UserInfoTableViewCellModel : CellModel {
         super.init(reuseIdentifier: CellIdentifiers.UserInfoTableViewCell.rawValue)
     }
 }
-
+//custom cell to show user info
 public  class UserInfoTableViewCell : BaseCell {
     @IBOutlet weak  var titleLabel: UILabel?
     @IBOutlet weak var descriptionLabel : UILabel?

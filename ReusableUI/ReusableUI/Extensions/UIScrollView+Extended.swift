@@ -1,10 +1,4 @@
-//
-//  UIScrollView+Extended.swift
-//  ReusableUI
-//
-//  Created by RAGHAV SHARMA on 07/01/20.
-//  Copyright © 2020 RAGHAV SHARMA. All rights reserved.
-//
+// Extending ScrollView
 
 import Foundation
 import UIKit
@@ -20,7 +14,7 @@ extension UIScrollView : CustomCellRegistrable {
             (self as? UITableView)?.register(UINib(nibName: identifier,bundle : bundle), forCellReuseIdentifier : identifier)
         }
     }
-    
+    //register custome cell from main framework
     public func registerCustomCells(identifiers : [String]) {
         for identifier in identifiers {
              (self as? UITableView)?.register(UINib(nibName: identifier,bundle : nil), forCellReuseIdentifier : identifier)

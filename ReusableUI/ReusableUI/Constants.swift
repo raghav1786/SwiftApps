@@ -1,10 +1,4 @@
-//
-//  Constants.swift
-//  ReusableUI
-//
-//  Created by RAGHAV SHARMA on 07/01/20.
-//  Copyright © 2020 RAGHAV SHARMA. All rights reserved.
-//
+//Contants used in ReusableUI
 
 import Foundation
 

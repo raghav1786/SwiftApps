@@ -1,19 +1,15 @@
-//
-//  TableViewManager.swift
-//  ReusableUI
-//
-//  Created by RAGHAV SHARMA on 24/12/19.
-//  Copyright © 2019 RAGHAV SHARMA. All rights reserved.
-//
+//TableViewManager
 
 import Foundation
 import UIKit
 
+//protocol for row items for Table , will be used as Custom Cells
 public protocol TableViewCompatible {
     var reuseIdentifier : String {get}
     func cellForTableView(tableView: UITableView, atIndexPath indexPath: IndexPath) -> UITableViewCell
 }
 
+//model for custom cell used to apend data
 open class CellModel : TableViewCompatible {
     public var reuseIdentifier: String
     
@@ -31,6 +27,7 @@ open class CellModel : TableViewCompatible {
     }
 }
 
+//Generic UITableViewCell used to apend customized cells into tableView
 public class BaseCell : UITableViewCell {
     public var cellModel : CellModel?
     open func configureWithModel(_ cellModel : CellModel) {
@@ -39,6 +36,7 @@ public class BaseCell : UITableViewCell {
     }
 }
 
+//protocol for custom sections in tableView
 public protocol TableViewSection {
     var sortOrder : Int {get set}
     var items : [TableViewCompatible] {get set}
@@ -46,6 +44,8 @@ public protocol TableViewSection {
     var footerTitle  : String? {get set}
 }
 
+//class used to apend custom sections into Tableview
+// can include headerTitle,FooterTitle,items:-customCells
 public class BaseTableViewSection : TableViewSection {
     public var sortOrder: Int
     
@@ -63,6 +63,7 @@ public class BaseTableViewSection : TableViewSection {
     }
 }
 
+//custom datasource object used to add data into tableView
 public class DataSource : NSObject , UITableViewDataSource {
     public var sections = [TableViewSection]() {
         didSet {
