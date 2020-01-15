@@ -8,6 +8,7 @@
 
 import UIKit
 import ReusableUI
+import Firebase
 
 class ViewController: UIViewController,UITableViewDelegate {
     
@@ -21,6 +22,9 @@ class ViewController: UIViewController,UITableViewDelegate {
         viewModel = ViewModel()
         viewModel?.configureData()
         // Do any additional setup after loading the view.
+        
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
         tableView.delegate = self
         tableView.registerCustomFrameWorkCells(identifiers: [CellIdentifiers.UserInfoTableViewCell.rawValue])
         tableView.dataSource = viewModel?.dataSource
