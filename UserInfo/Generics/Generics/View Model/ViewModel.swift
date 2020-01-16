@@ -8,19 +8,23 @@
 
 import Foundation
 import ReusableUI
+import FirebaseDatabase
 
 struct ViewModel  {
     let dataSource : DataSource = DataSource()
-    
-    
+    var users = [String]()
     //configure data into ViewModel for custom Cell used in tableView
     func configureData() {
+        dataSource.sections.removeAll()
         var rowItems : [TableViewCompatible] = []
-        let userInformation = UserInfo(name: "Raghav", phone: 7589244460, address: "Megapolis Mystic")
-        let userInformationTableViewCellModel = UserInfoTableViewCellModel(referenceContent: userInformation)
-        rowItems.append(userInformationTableViewCellModel)
-        
+        print(users.count)
+        for items in users {
+//            let userInfoCell = UserInfo(name: items, phone: 787, address: "as")
+//            let userInfoTableViewCell = UserInfoTableViewCellModel(referenceContent: userInfoCell)
+//            rowItems.append(userInfoTableViewCell)
+        }
         let section = BaseTableViewSection(sortOrder: 0, items: rowItems)
+        
         dataSource.sections.append(section)
     }
 }

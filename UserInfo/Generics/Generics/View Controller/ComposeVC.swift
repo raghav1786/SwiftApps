@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import ReusableUI
-import Firebase
+import FirebaseDatabase
 
 class ComposeVC: UIViewController {
     @IBOutlet weak var nametxtFeild: UITextField!
@@ -18,14 +18,17 @@ class ComposeVC: UIViewController {
     @IBOutlet weak var addresstxtFeild : UITextField!
     //properties
     var viewModel : LoginVM?
+    var ref : DatabaseReference?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = LoginVM()
+        ref = Database.database().reference()
         // Do any additional setup after loading the view.
     }
     
     @IBAction func addUser(_ sender: Any) {
+        ref?.child("users").childByAutoId().setValue(nametxtFeild.text)
         navigationController?.popViewController(animated: true)
         
     }
