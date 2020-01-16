@@ -43,4 +43,9 @@ public  class UserInfoTableViewCell : BaseCell {
         titleLabel?.text = model?.name
         descriptionLabel?.text = model?.address
     }
+    
+    override public func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
 }
