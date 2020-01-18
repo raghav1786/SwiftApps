@@ -17,20 +17,28 @@ class ComposeVC: UIViewController {
     @IBOutlet weak var contacttxtFeild: UITextField!
     @IBOutlet weak var addresstxtFeild : UITextField!
     //properties
-    var viewModel : LoginVM?
     var ref : DatabaseReference?
+    var refUsers : DatabaseReference?
+    var refUserDetails : DatabaseReference?
+    var viewModel : LoginVM?
+    var count = 3
 
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = LoginVM()
         ref = Database.database().reference()
+        refUsers =  ref?.child("users")
+        refUserDetails = ref?.child("userDetails")
         // Do any additional setup after loading the view.
     }
     
     @IBAction func addUser(_ sender: Any) {
-        ref?.child("users").childByAutoId().setValue(nametxtFeild.text)
+        // Create the user and record it
+        writeUserToDatabase()
+        // Create the userDetail and record it
+        writeUserDetailToDatabase()
+        count += 1
         navigationController?.popViewController(animated: true)
-        
     }
     
     @IBAction func cancelRequest(_ sender: Any) {
@@ -38,4 +46,13 @@ class ComposeVC: UIViewController {
        
     }
     
+    private func writeUserDetailToDatabase() {
+        refUserDetails?.child(String(count)).child("email").setValue(emailtxtFeild.text)
+        refUserDetails?.child(String(count)).child("contact").setValue(Int64(contacttxtFeild?.text ?? ""))
+        refUserDetails?.child(String(count)).child("address").setValue(addresstxtFeild.text)
+    }
+    
+    private func writeUserToDatabase() {
+        refUsers?.child(String(count)).child("name").setValue(nametxtFeild.text)
+    }
 }

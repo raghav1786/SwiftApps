@@ -38,6 +38,13 @@ class UserVC: UIViewController,UITableViewDelegate {
         
     }
     
+    @IBAction func addUsers(_ sender: Any) {
+        let composeVC = ComposeVC()
+        composeVC.count = self.viewModel?
+        navigationController?.pushViewController(composeVC, animated: true)
+    }
+    
+    
     private func getUsers() {
         //Retrieve the users and listen for changes
         refUsers?.observe(.value,with: { snapshot in

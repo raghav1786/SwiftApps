@@ -37,6 +37,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="x2E-ry-SGI">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
+                                <action selector="addUsers:" destination="BYZ-38-t0r" id="0w1-9B-2E9"/>
                                 <segue destination="Y8J-2V-zy7" kind="push" id="DUf-ho-ij6"/>
                             </connections>
                         </barButtonItem>

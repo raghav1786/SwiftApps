@@ -26,7 +26,6 @@ struct UserVM  {
             for user in users   {
                 //Getting user Details for the user
                 let userDetail = userDetails[user.key - 1]
-                
                 //passing detail to UserDescription Struct
                 let userInfoCell = UserDescription(id: user.key, name: user.name, phone: userDetail.contact, address: userDetail.address, email: userDetail.email)
                 
