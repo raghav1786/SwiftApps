@@ -10,23 +10,33 @@ import Foundation
 import ReusableUI
 import FirebaseDatabase
 
-struct ViewModel  {
+struct UserVM  {
+    
+    //properties
     let dataSource : DataSource = DataSource()
     var userDetails = [UserDetails]()
     var users = [Users]()
+    
     //configure data into ViewModel for custom Cell used in tableView
     func configureData() {
-        
-        
         dataSource.sections.removeAll()
         var rowItems : [TableViewCompatible] = []
-            for items in userDetails   {
-                let userInfoCell = UserDescription(id: items.key, name: users[items.key-1].name, phone: items.contact, address: items.address, email: items.email)
+            
+            // navigating through each user and fetching its details
+            for user in users   {
+                //Getting user Details for the user
+                let userDetail = userDetails[user.key - 1]
+                
+                //passing detail to UserDescription Struct
+                let userInfoCell = UserDescription(id: user.key, name: user.name, phone: userDetail.contact, address: userDetail.address, email: userDetail.email)
+                
+                //adding details of user to UserInfoTableViewCellModel
                 let userInfoTableViewCell = UserInfoTableViewCellModel(referenceContent: userInfoCell)
                 rowItems.append(userInfoTableViewCell)
             }
-        let section = BaseTableViewSection(sortOrder: 0, items: rowItems)
         
+        //appending rowItems into section
+        let section = BaseTableViewSection(sortOrder: 0, items: rowItems)
         dataSource.sections.append(section)
     }
 }
