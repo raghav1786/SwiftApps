@@ -10,7 +10,7 @@ import UIKit
 import ReusableUI
 import FirebaseDatabase
 
-class ViewController: UIViewController,UITableViewDelegate {
+class UserVC: UIViewController,UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,11 +18,11 @@ class ViewController: UIViewController,UITableViewDelegate {
     var ref : DatabaseReference?
     var refUsers : DatabaseReference?
     var refUserDetails : DatabaseReference?
-    var viewModel : ViewModel?
+    var viewModel : UserVM?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = ViewModel()
+        viewModel = UserVM()
         
         // Do any additional setup after loading the view.
         registerCustomCells()
@@ -48,6 +48,8 @@ class ViewController: UIViewController,UITableViewDelegate {
                 users.append(user)
             }
             self.viewModel?.users = users
+            
+            //fetching userDetails from firebase
             self.getUserDetails()
         })
     }
@@ -62,17 +64,20 @@ class ViewController: UIViewController,UITableViewDelegate {
                 userDetails.append(userDetail)
             }
             self.viewModel?.userDetails = userDetails
-            self.viewModel?.configureData()
-            self.tableView.reloadData()
+            //reload table after getting data
+            self.reloadTableViews()
         })
     }
     
+    
+    //reloadtableViews data
     private func reloadTableViews() {
         viewModel?.configureData()
         tableView.dataSource = viewModel?.dataSource
         tableView.reloadData()
     }
     
+    //register custom cells for tableView
     private func registerCustomCells() {
         tableView.delegate = self
         tableView.registerCustomFrameWorkCells(identifiers: [CellIdentifiers.UserInfoTableViewCell.rawValue])
