@@ -10,21 +10,25 @@ import Foundation
 import UIKit
 
 //added structure for adding Details of user
-public struct UserInfo {
+public struct UserDescription {
+    let id : Int?
     let name : String?
     let phone : Int64?
     let address : String?
+    let email : String?
     
-    public init(name: String?,phone: Int64?,address: String?) {
+    public init(id:Int?,name: String?,phone: Int64?,address: String?,email:String?) {
+        self.id = id
         self.name = name
         self.phone = phone
         self.address = address
+        self.email = email
     }
 }
 //appending data using data model
 public  class UserInfoTableViewCellModel : CellModel {
-    public var referenceContent : UserInfo?
-    public init(referenceContent : UserInfo) {
+    public var referenceContent : UserDescription?
+    public init(referenceContent : UserDescription) {
         self.referenceContent = referenceContent
         super.init(reuseIdentifier: CellIdentifiers.UserInfoTableViewCell.rawValue)
     }

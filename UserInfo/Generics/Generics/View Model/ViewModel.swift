@@ -12,17 +12,19 @@ import FirebaseDatabase
 
 struct ViewModel  {
     let dataSource : DataSource = DataSource()
-    var users = [String]()
+    var userDetails = [UserDetails]()
+    var users = [Users]()
     //configure data into ViewModel for custom Cell used in tableView
     func configureData() {
+        
+        
         dataSource.sections.removeAll()
         var rowItems : [TableViewCompatible] = []
-        print(users.count)
-        for items in users {
-//            let userInfoCell = UserInfo(name: items, phone: 787, address: "as")
-//            let userInfoTableViewCell = UserInfoTableViewCellModel(referenceContent: userInfoCell)
-//            rowItems.append(userInfoTableViewCell)
-        }
+            for items in userDetails   {
+                let userInfoCell = UserDescription(id: items.key, name: users[items.key-1].name, phone: items.contact, address: items.address, email: items.email)
+                let userInfoTableViewCell = UserInfoTableViewCellModel(referenceContent: userInfoCell)
+                rowItems.append(userInfoTableViewCell)
+            }
         let section = BaseTableViewSection(sortOrder: 0, items: rowItems)
         
         dataSource.sections.append(section)
