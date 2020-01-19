@@ -35,8 +35,10 @@ public  class UserInfoTableViewCellModel : CellModel {
 }
 //custom cell to show user info
 public  class UserInfoTableViewCell : BaseCell {
-    @IBOutlet weak  var titleLabel: UILabel?
-    @IBOutlet weak var descriptionLabel : UILabel?
+    @IBOutlet weak  var nameLabel: UILabel?
+    @IBOutlet weak var emailLabel : UILabel?
+    @IBOutlet weak var addressLabel : UILabel?
+    @IBOutlet weak var contactLabel : UILabel?
     
     override public func configureWithModel(_ cellModel: CellModel) {
         super.configureWithModel(cellModel)
@@ -44,8 +46,10 @@ public  class UserInfoTableViewCell : BaseCell {
             return
         }
         let model = cellModel.referenceContent
-        titleLabel?.text = model?.name
-        descriptionLabel?.text = model?.address
+        nameLabel?.text = model?.name
+        emailLabel?.text = model?.email
+        addressLabel?.text = model?.address
+        contactLabel?.text = "\(model?.phone ?? 0)"
     }
     
     override public func awakeFromNib() {

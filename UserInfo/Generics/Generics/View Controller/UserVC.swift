@@ -39,8 +39,10 @@ class UserVC: UIViewController,UITableViewDelegate {
     }
     
     @IBAction func addUsers(_ sender: Any) {
-        let composeVC = ComposeVC()
-        composeVC.count = self.viewModel?
+        guard let composeVC = ComposeVC.createInstance(storyboard: .main) as? ComposeVC else {return}
+        var composeVM = ComposeVM()
+        composeVM.count = self.viewModel?.users.count ?? 4
+        composeVC.inject(dependency: composeVM)
         navigationController?.pushViewController(composeVC, animated: true)
     }
     
