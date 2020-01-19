@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+struct ComposeVM {
+    var count : Int?
+    
+    func configureData() {
+    }
+}

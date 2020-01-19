@@ -17,15 +17,24 @@ class ComposeVC: UIViewController {
     @IBOutlet weak var contacttxtFeild: UITextField!
     @IBOutlet weak var addresstxtFeild : UITextField!
     //properties
+    typealias DependencyType = ComposeVM
     var ref : DatabaseReference?
     var refUsers : DatabaseReference?
     var refUserDetails : DatabaseReference?
-    var viewModel : LoginVM?
-    var count = 3
+    fileprivate var viewModel : ComposeVM?
+    var count : Int =  3
+    
+    private func assertDependencies() {
+        assert(viewModel != nil)
+    }
+    
+    internal func inject(dependency : DependencyType) {
+        viewModel = dependency
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = LoginVM()
+        count = (self.viewModel?.count ?? 4) + 1
         ref = Database.database().reference()
         refUsers =  ref?.child("users")
         refUserDetails = ref?.child("userDetails")
@@ -37,7 +46,6 @@ class ComposeVC: UIViewController {
         writeUserToDatabase()
         // Create the userDetail and record it
         writeUserDetailToDatabase()
-        count += 1
         navigationController?.popViewController(animated: true)
     }
     

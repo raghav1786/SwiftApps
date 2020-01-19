@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0E20782623B26E51000F11EC /* TableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E20782523B26E51000F11EC /* TableViewManager.swift */; };
+		0E52D99B23D4445100E115B3 /* UIViewController+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E52D99A23D4445100E115B3 /* UIViewController+Extended.swift */; };
+		0E52D99F23D4457A00E115B3 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E52D99E23D4457A00E115B3 /* Utilities.swift */; };
+		0E52D9A123D4D22000E115B3 /* UIView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E52D9A023D4D22000E115B3 /* UIView+Extended.swift */; };
 		0E7E31A323AFCBDF00B37C91 /* ReusableUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7E319923AFCBDF00B37C91 /* ReusableUI.framework */; };
 		0E7E31A823AFCBDF00B37C91 /* ReusableUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7E31A723AFCBDF00B37C91 /* ReusableUITests.swift */; };
 		0E7E31AA23AFCBDF00B37C91 /* ReusableUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E7E319C23AFCBDF00B37C91 /* ReusableUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,6 +32,9 @@
 
 /* Begin PBXFileReference section */
 		0E20782523B26E51000F11EC /* TableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewManager.swift; sourceTree = "<group>"; };
+		0E52D99A23D4445100E115B3 /* UIViewController+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extended.swift"; sourceTree = "<group>"; };
+		0E52D99E23D4457A00E115B3 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		0E52D9A023D4D22000E115B3 /* UIView+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extended.swift"; sourceTree = "<group>"; };
 		0E7E319923AFCBDF00B37C91 /* ReusableUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReusableUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E7E319C23AFCBDF00B37C91 /* ReusableUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReusableUI.h; sourceTree = "<group>"; };
 		0E7E319D23AFCBDF00B37C91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,6 +93,7 @@
 				0E7E319D23AFCBDF00B37C91 /* Info.plist */,
 				0E20782523B26E51000F11EC /* TableViewManager.swift */,
 				0ED3E38423C4FC1D00795E5E /* Constants.swift */,
+				0E52D99E23D4457A00E115B3 /* Utilities.swift */,
 			);
 			path = ReusableUI;
 			sourceTree = "<group>";
@@ -121,6 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				0ED3E38723C5003A00795E5E /* UIScrollView+Extended.swift */,
+				0E52D99A23D4445100E115B3 /* UIViewController+Extended.swift */,
+				0E52D9A023D4D22000E115B3 /* UIView+Extended.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -236,6 +245,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E52D9A123D4D22000E115B3 /* UIView+Extended.swift in Sources */,
+				0E52D99F23D4457A00E115B3 /* Utilities.swift in Sources */,
+				0E52D99B23D4445100E115B3 /* UIViewController+Extended.swift in Sources */,
 				0E7E31B823AFCC3300B37C91 /* UserInfoTableViewCell.swift in Sources */,
 				0E20782623B26E51000F11EC /* TableViewManager.swift in Sources */,
 				0ED3E38823C5003A00795E5E /* UIScrollView+Extended.swift in Sources */,

@@ -17,7 +17,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mjA-Yu-fSq">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="NAE-lh-D84"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="jl4-gd-4CT"/>
@@ -38,7 +38,6 @@
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addUsers:" destination="BYZ-38-t0r" id="0w1-9B-2E9"/>
-                                <segue destination="Y8J-2V-zy7" kind="push" id="DUf-ho-ij6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -53,13 +52,13 @@
         <!--add user information-->
         <scene sceneID="uvL-cN-vCv">
             <objects>
-                <viewController id="Y8J-2V-zy7" customClass="ComposeVC" customModule="Generics" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ComposeVC" id="Y8J-2V-zy7" customClass="ComposeVC" customModule="Generics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ec3-iT-dhJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="Abd-BM-Zt6">
-                                <rect key="frame" x="20" y="247.5" width="374" height="316"/>
+                                <rect key="frame" x="20" y="203.5" width="374" height="316"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EfG-xb-NFU">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
@@ -125,9 +124,8 @@
                     <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uCr-pa-NzH">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.96620899438858032" green="0.035020955400497662" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" red="0.62216645077720201" green="0.19097359053395616" blue="0.18101378010821176" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
-                        <color key="barTintColor" red="0.56362350969504904" green="0.58585229227492941" blue="0.96620899439999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.45741776297799785" green="0.0" blue="0.96130555868148804" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
