@@ -27,5 +27,4 @@ class LoginVC: UIViewController {
         var ref: DatabaseReference!
         ref = Database.database().reference()
     }
-
 }
