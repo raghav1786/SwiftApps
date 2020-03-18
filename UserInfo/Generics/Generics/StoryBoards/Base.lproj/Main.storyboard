@@ -125,7 +125,7 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.62216645077720201" green="0.19097359053395616" blue="0.18101378010821176" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
-                        <color key="barTintColor" red="0.60210366800000004" green="0.65221193889999995" blue="0.66666668650000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
