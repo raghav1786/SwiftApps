@@ -1,0 +1,157 @@
+
+import UIKit
+fileprivate typealias UserDataSource     = UICollectionViewDiffableDataSource<MoviesVC.Section, Movie>
+fileprivate typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<MoviesVC.Section, Movie>
+
+class MoviesVC: UIViewController {
+    @IBOutlet weak var tabBar : UITabBar?
+    @IBOutlet weak var topRatedTabBar: UITabBarItem!
+    @IBOutlet weak var nowPlayingTabBar: UITabBarItem!
+    @IBOutlet weak var collectionView : UICollectionView!
+    
+    var viewModel : MoviesVM?
+    fileprivate lazy var dataSource = makeDataSource()
+    var refreshControl = UIRefreshControl()
+    var selectedTabBarItem : UITabBarItem? {
+        didSet {
+            let isNowPlaying = selectedTabBarItem == self.nowPlayingTabBar ? true : false
+            ActivityIndicator.shared.addActivityIndicator(self.view)
+            self.viewModel?.getMovieList(isNowPlaying) {_ in
+                self.applySnapshot()
+                ActivityIndicator.shared.stopAnimation()
+                ActivityIndicator.shared.removeActivityIndicator()
+            }
+        }
+    }
+    
+    fileprivate enum Section {
+        case main
+    }
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredMovies: [Movie] = []
+    private var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
+        viewModel = MoviesVM()
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        
+        self.collectionView.addSubview(self.refreshControl)
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = dataSource
+        self.collectionView.register(UINib(nibName: Constants.movieCellIdentifier,
+                                           bundle: Bundle.main), forCellWithReuseIdentifier: Constants.movieCellIdentifier)
+        applySnapshot(animatingDifferences: false)
+        
+        selectedTabBarItem = nowPlayingTabBar
+        self.tabBar?.selectedItem = nowPlayingTabBar
+        self.tabBar?.delegate = self
+        setupSearchBar()
+        setupCollectionView()
+        setupTheme()
+    }
+    
+    func setupTheme() {
+        self.refreshControl.tintColor = .systemRed
+        self.searchController.searchBar.tintColor = .darkGrayColor()
+        self.searchController.searchBar.searchTextField.backgroundColor = .white
+        self.searchController.searchBar.searchTextField.textColor = .black
+    }
+}
+
+extension MoviesVC {
+    fileprivate func makeDataSource() -> UserDataSource {
+        let dataSource = UserDataSource(
+            collectionView: collectionView,
+            cellProvider: { (collectionView, indexPath,movie) ->
+                UICollectionViewCell? in
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: Constants.movieCellIdentifier,
+                    for: indexPath) as? MovieCollectionViewCell
+                cell?.movieTitle.text = movie.title
+                cell?.movieDesc.text = movie.overview
+                cell?.backgroundColor = .backgroundColor()
+                if let movieImage = movie.movieImage,
+                    let url = URL(string: "\(Constants.imageBaseURL)\(movieImage)\(ApiKey.queryParamter)\(ApiKey.value)") {
+                    cell?.movieImageView.load(url: url)
+                    cell?.movieImageView?.contentMode = .scaleAspectFill
+                }
+                cell?.deleteBtn.tintColor = .systemRed
+                cell?.deleteBtn?.layer.setValue(indexPath, forKey: "indexPath")
+                cell?.deleteBtn?.addTarget(self,
+                                           action: #selector(self.deleteMovie(sender:)),
+                                           for: UIControl.Event.touchUpInside)
+                return cell
+        })
+        return dataSource
+    }
+    
+    @objc func deleteMovie(sender:UIButton) {
+        guard let indexPath : IndexPath = (sender.layer.value(forKey: "indexPath")) as? IndexPath else {return}
+        guard let movie = self.dataSource.itemIdentifier(for: indexPath) else { return }
+        var snapshort = self.dataSource.snapshot()
+        snapshort.deleteItems([movie])
+        dataSource.apply(snapshort, animatingDifferences: true)
+        self.collectionView.deselectItem(at: indexPath, animated: true)
+    }
+    
+    func setupCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        self.collectionView.collectionViewLayout = layout
+        self.collectionView.isPagingEnabled = true
+        self.collectionView.showsHorizontalScrollIndicator = false
+        layout.collectionView?.backgroundColor = .backgroundColor()
+    }
+    
+    func applySnapshot(animatingDifferences: Bool = true) {
+        var snapshot = DataSourceSnapshot()
+        snapshot.appendSections([.main])
+        if isFiltering {
+            snapshot.appendItems(filteredMovies)
+        } else {
+            snapshot.appendItems(viewModel?.movieList ?? [])
+        }
+        dataSource.apply(snapshot,
+                         animatingDifferences: animatingDifferences)
+    }
+}
+
+extension MoviesVC : UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        guard let movie = dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        guard let movieDetailsVC = MovieDetailsVC.createInstance(storyboard: .main) as? MovieDetailsVC else{return}
+        let selectedTabBarIndex = self.selectedTabBarItem == nowPlayingTabBar ? 0 : 1
+        let movieDetailVM = MovieDetailsVM(movie: movie,
+                                           selectedTabBarIndex: selectedTabBarIndex)
+        movieDetailsVC.viewModel = movieDetailVM
+        self.navigationController?.pushViewController(movieDetailsVC,
+                                                      animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.collectionView.frame.width,
+                      height: self.collectionView.frame.height / 5)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+}
