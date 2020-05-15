@@ -8,8 +8,13 @@ class MoviesVM {
     func getMovieList(_ isNowPlaying: Bool,compeletion : @escaping(Bool) -> ()) {
         self.apiRequestManager.fetchMoviesList(isNowPlaying) { (movieList) in
             DispatchQueue.main.async {
-                self.movieList = movieList
-                compeletion(true)
+                if let movieList = movieList {
+                    self.movieList = movieList
+                    compeletion(true)
+                } else {
+                    compeletion(false)
+                }
+                
             }
         }
     }

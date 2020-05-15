@@ -15,12 +15,7 @@ class MoviesVC: UIViewController {
     var selectedTabBarItem : UITabBarItem? {
         didSet {
             let isNowPlaying = selectedTabBarItem == self.nowPlayingTabBar ? true : false
-            ActivityIndicator.shared.addActivityIndicator(self.view)
-            self.viewModel?.getMovieList(isNowPlaying) {_ in
-                self.applySnapshot()
-                ActivityIndicator.shared.stopAnimation()
-                ActivityIndicator.shared.removeActivityIndicator()
-            }
+            apiCallHandling(isNowPlaying)
         }
     }
     
@@ -60,6 +55,24 @@ class MoviesVC: UIViewController {
         setupTheme()
     }
     
+    func apiCallHandling(_ isNowPlaying: Bool) {
+        ActivityIndicator.shared.addActivityIndicator(self.view)
+        self.viewModel?.getMovieList(isNowPlaying) { (success) in
+            if success {
+                self.applySnapshot()
+            } else {
+                let alert = UIAlertController(title: ApiKey.apiErrorTitle, message: ApiKey.apiErrorMessage, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: ApiKey.retryBtn, style: UIAlertAction.Style.default, handler: { _ in
+                    self.apiCallHandling(isNowPlaying)
+                }))
+                alert.addAction(UIAlertAction(title: ApiKey.okayBtnTitle, style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            ActivityIndicator.shared.stopAnimation()
+            ActivityIndicator.shared.removeActivityIndicator()
+        }
+    }
+    
     func setupTheme() {
         self.refreshControl.tintColor = .systemRed
         self.searchController.searchBar.tintColor = .darkGrayColor()
@@ -67,6 +80,8 @@ class MoviesVC: UIViewController {
         self.searchController.searchBar.searchTextField.textColor = .black
     }
 }
+
+// collection view diffable dataSource and applySnapshot
 
 extension MoviesVC {
     fileprivate func makeDataSource() -> UserDataSource {
@@ -117,9 +132,9 @@ extension MoviesVC {
         var snapshot = DataSourceSnapshot()
         snapshot.appendSections([.main])
         if isFiltering {
-            snapshot.appendItems(filteredMovies)
+            snapshot.appendItems(filteredMovies, toSection: .main)
         } else {
-            snapshot.appendItems(viewModel?.movieList ?? [])
+            snapshot.appendItems(viewModel?.movieList ?? [],toSection: .main)
         }
         dataSource.apply(snapshot,
                          animatingDifferences: animatingDifferences)

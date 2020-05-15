@@ -58,7 +58,7 @@
                         </subviews>
                     </stackView>
                 </subviews>
-                <color key="backgroundColor" red="0.91372549020000005" green="0.70588235290000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" red="0.92549019610000005" green="0.70980392160000005" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="Y0Y-HQ-yaR" firstAttribute="top" secondItem="PYf-3s-96I" secondAttribute="top" constant="10" id="C2a-Xj-Lew"/>
                     <constraint firstAttribute="trailing" secondItem="Y0Y-HQ-yaR" secondAttribute="trailing" constant="20" id="OKe-d8-WNJ"/>
@@ -66,7 +66,7 @@
                     <constraint firstItem="Y0Y-HQ-yaR" firstAttribute="leading" secondItem="PYf-3s-96I" secondAttribute="leading" constant="20" id="bEa-ha-XMX"/>
                 </constraints>
             </collectionViewCellContentView>
-            <color key="backgroundColor" red="0.91372549020000005" green="0.70588235290000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.92549019610000005" green="0.70980392160000005" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <size key="customSize" width="642" height="190"/>
             <connections>
                 <outlet property="deleteBtn" destination="nPd-en-sGW" id="eTt-Pt-mvc"/>
