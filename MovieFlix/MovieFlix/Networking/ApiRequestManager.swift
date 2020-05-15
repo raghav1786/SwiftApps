@@ -18,9 +18,12 @@ public class ApiRequestManager {
     }
     
     func fetchDataForApi(_ finalURL: String,
-                         compeletion : @escaping([Movie]) -> ()) {
+                         compeletion : @escaping([Movie]?) -> ()) {
         AF.request(finalURL,parameters: params).responseDecodable(of: MovieList.self) { (response) in
-            guard let movieList = response.value?.results else {return}
+            guard let movieList = response.value?.results else {
+                compeletion(nil)
+                return
+            }
             compeletion(movieList)
         }
     }

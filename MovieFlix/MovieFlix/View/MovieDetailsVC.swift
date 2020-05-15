@@ -25,7 +25,6 @@ class MovieDetailsVC: UIViewController {
         swipeUp.direction = .up
         movieDetailsCard?.addGestureRecognizer(swipeUp)
         setupUI()
-        setupDarkMode()
     }
     
     @objc func handleSwipeUp(sender: UITapGestureRecognizer) {
@@ -39,9 +38,5 @@ class MovieDetailsVC: UIViewController {
             self.movieDetailImageView?.load(url: url)
             self.movieDetailImageView?.contentMode = .scaleAspectFill
         }
-    }
-    
-    func setupDarkMode() {
-        self.navigationItem.backBarButtonItem?.tintColor = .yellow
     }
 }

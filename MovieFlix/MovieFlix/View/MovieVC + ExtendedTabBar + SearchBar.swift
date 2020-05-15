@@ -2,6 +2,7 @@
 import Foundation
 import UIKit
 
+// Tab Bar Handling
 extension MoviesVC : UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         selectedTabBarItem = item
@@ -9,16 +10,11 @@ extension MoviesVC : UITabBarDelegate {
     
     @objc func refresh(_ sender: AnyObject) {
         let isNowPlaying = selectedTabBarItem == self.nowPlayingTabBar ? true : false
-        ActivityIndicator.shared.addActivityIndicator(self.view)
-        self.viewModel?.getMovieList(isNowPlaying) {_ in
-            self.applySnapshot()
-            self.refreshControl.endRefreshing()
-            ActivityIndicator.shared.stopAnimation()
-            ActivityIndicator.shared.removeActivityIndicator()
-        }
+           apiCallHandling(isNowPlaying)
     }
 }
 
+//Search Bar Handling
 extension MoviesVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
