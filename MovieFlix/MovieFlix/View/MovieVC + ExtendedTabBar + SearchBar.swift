@@ -10,7 +10,8 @@ extension MoviesVC : UITabBarDelegate {
     
     @objc func refresh(_ sender: AnyObject) {
         let isNowPlaying = selectedTabBarItem == self.nowPlayingTabBar ? true : false
-           apiCallHandling(isNowPlaying)
+        self.refreshControl.endRefreshing()
+        apiCallHandling(isNowPlaying)
     }
 }
 
@@ -35,12 +36,17 @@ extension MoviesVC: UISearchResultsUpdating {
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        if let movieList = viewModel?.movieList {
+        let isNowPlaying = selectedTabBarItem == self.nowPlayingTabBar ? true : false
+        if let movieList = viewModel?.movieList,isNowPlaying {
             filteredMovies = movieList.filter { (movie: Movie) -> Bool in
                 return (movie.title?.lowercased().contains(searchText.lowercased()) ?? false)
             }
         }
+        if let topRatedmovieList = viewModel?.topRatedMovies,!isNowPlaying {
+            filteredMovies = topRatedmovieList.filter { (movie: Movie) -> Bool in
+                return (movie.title?.lowercased().contains(searchText.lowercased()) ?? false)
+            }
+        }
         applySnapshot()
-        
     }
 }
