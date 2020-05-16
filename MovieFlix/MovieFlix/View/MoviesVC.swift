@@ -129,6 +129,7 @@ extension MoviesVC {
         self.collectionView.collectionViewLayout = layout
         self.collectionView.isPagingEnabled = true
         self.collectionView.showsHorizontalScrollIndicator = false
+        self.collectionView.alwaysBounceVertical = true;
         layout.collectionView?.backgroundColor = .backgroundColor()
     }
     
