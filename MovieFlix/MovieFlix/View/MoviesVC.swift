@@ -116,6 +116,7 @@ extension MoviesVC {
         guard let movie = viewModel?.movieList?.filter({$0.id == id}).first else {return}
         guard let indexPath = self.dataSource.indexPath(for: movie) else { return }
         DispatchQueue.main.async {
+            self.viewModel?.movieList?.remove(at: indexPath.row)
             var snapshort = self.dataSource.snapshot()
             snapshort.deleteItems([movie])
             self.dataSource.apply(snapshort, animatingDifferences: true)
