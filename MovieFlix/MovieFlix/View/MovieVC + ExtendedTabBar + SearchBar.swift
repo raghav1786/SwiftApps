@@ -39,7 +39,8 @@ extension MoviesVC: UISearchResultsUpdating {
             filteredMovies = movieList.filter { (movie: Movie) -> Bool in
                 return (movie.title?.lowercased().contains(searchText.lowercased()) ?? false)
             }
+            applySnapshot()
         }
-        applySnapshot()
+        
     }
 }

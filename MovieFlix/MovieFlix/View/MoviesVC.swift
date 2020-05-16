@@ -95,28 +95,32 @@ extension MoviesVC {
                 cell?.movieTitle.text = movie.title
                 cell?.movieDesc.text = movie.overview
                 cell?.backgroundColor = .backgroundColor()
+                cell?.movieID = movie.id
                 if let movieImage = movie.movieImage,
                     let url = URL(string: "\(Constants.imageBaseURL)\(movieImage)\(ApiKey.queryParamter)\(ApiKey.value)") {
                     cell?.movieImageView.load(url: url)
                     cell?.movieImageView?.contentMode = .scaleAspectFill
                 }
                 cell?.deleteBtn.tintColor = .systemRed
-                cell?.deleteBtn?.layer.setValue(indexPath, forKey: "indexPath")
-                cell?.deleteBtn?.addTarget(self,
-                                           action: #selector(self.deleteMovie(sender:)),
-                                           for: UIControl.Event.touchUpInside)
+                cell?.deleteButtonAction = { [unowned self] (id) in
+                    if let movieId = id {
+                        self.deleteMovie(movieId)
+                    }
+                }
                 return cell
         })
         return dataSource
     }
     
-    @objc func deleteMovie(sender:UIButton) {
-        guard let indexPath : IndexPath = (sender.layer.value(forKey: "indexPath")) as? IndexPath else {return}
-        guard let movie = self.dataSource.itemIdentifier(for: indexPath) else { return }
-        var snapshort = self.dataSource.snapshot()
-        snapshort.deleteItems([movie])
-        dataSource.apply(snapshort, animatingDifferences: true)
-        self.collectionView.deselectItem(at: indexPath, animated: true)
+    func deleteMovie(_ id : Int64) {
+        guard let movie = viewModel?.movieList?.filter({$0.id == id}).first else {return}
+        guard let indexPath = self.dataSource.indexPath(for: movie) else { return }
+        DispatchQueue.main.async {
+            var snapshort = self.dataSource.snapshot()
+            snapshort.deleteItems([movie])
+            self.dataSource.apply(snapshort, animatingDifferences: true)
+            self.collectionView.deselectItem(at: indexPath, animated: true)
+        }
     }
     
     func setupCollectionView() {
