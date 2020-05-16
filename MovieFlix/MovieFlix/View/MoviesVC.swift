@@ -15,7 +15,12 @@ class MoviesVC: UIViewController {
     var selectedTabBarItem : UITabBarItem? {
         didSet {
             let isNowPlaying = selectedTabBarItem == self.nowPlayingTabBar ? true : false
-            apiCallHandling(isNowPlaying)
+            if viewModel?.topRatedMovies == nil ,!isNowPlaying {
+                apiCallHandling(isNowPlaying)
+            } else if viewModel?.movieList == nil, isNowPlaying {
+                apiCallHandling(isNowPlaying)
+            }
+            applySnapshot()
         }
     }
     
@@ -36,11 +41,11 @@ class MoviesVC: UIViewController {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
         viewModel = MoviesVM()
+        self.apiCallHandling(true)
         self.extendedLayoutIncludesOpaqueBars = true
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        
-        self.collectionView.addSubview(self.refreshControl)
+        self.collectionView.refreshControl = self.refreshControl
         self.collectionView.delegate = self
         self.collectionView.dataSource = dataSource
         self.collectionView.register(UINib(nibName: Constants.movieCellIdentifier,
@@ -113,10 +118,12 @@ extension MoviesVC {
     }
     
     func deleteMovie(_ id : Int64) {
-        guard let movie = viewModel?.movieList?.filter({$0.id == id}).first else {return}
+        let isNowPlaying = selectedTabBarItem == self.nowPlayingTabBar ? true : false
+        guard let movie = isNowPlaying ? viewModel?.movieList?.filter({$0.id == id}).first : viewModel?.topRatedMovies?.filter({$0.id == id}).first else {return}
         guard let indexPath = self.dataSource.indexPath(for: movie) else { return }
         DispatchQueue.main.async {
-            self.viewModel?.movieList?.remove(at: indexPath.row)
+            let _ = isNowPlaying ? self.viewModel?.movieList?.remove(at: indexPath.row) :
+                self.viewModel?.topRatedMovies?.remove(at: indexPath.row)
             var snapshort = self.dataSource.snapshot()
             snapshort.deleteItems([movie])
             self.dataSource.apply(snapshort, animatingDifferences: true)
@@ -140,7 +147,7 @@ extension MoviesVC {
         if isFiltering {
             snapshot.appendItems(filteredMovies, toSection: .main)
         } else {
-            snapshot.appendItems(viewModel?.movieList ?? [],toSection: .main)
+            self.selectedTabBarItem == self.nowPlayingTabBar ? snapshot.appendItems(viewModel?.movieList ?? [],toSection: .main) : snapshot.appendItems(viewModel?.topRatedMovies ?? [],toSection: .main)
         }
         dataSource.apply(snapshot,
                          animatingDifferences: animatingDifferences)
