@@ -44,6 +44,9 @@
                                                 </constraints>
                                                 <color key="tintColor" red="0.96130555870000001" green="0.19780579970000001" blue="0.29188903220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" image="trash" catalog="system"/>
+                                                <connections>
+                                                    <action selector="deleteClickedWithSender:" destination="hQH-cx-NY1" eventType="touchUpInside" id="CXl-NB-7pW"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
