@@ -16,20 +16,42 @@ extension MoviesVC : UITabBarDelegate {
 }
 
 //Search Bar Handling
-extension MoviesVC: UISearchResultsUpdating {
+extension MoviesVC: UISearchResultsUpdating, UISearchBarDelegate,UITextFieldDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
-        filterContentForSearchText(searchBar.text!)
+        if !isSearchOver || isSearchBarEmpty {
+            isSearchOver = false
+            filterContentForSearchText(searchBar.text!)
+        }
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.isSearchOver = true
+        self.searchController.searchBar.searchTextField.resignFirstResponder()
+        self.searchController.dismiss(animated: true, completion: nil)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.isSearchOver = true
+        self.searchController.searchBar.searchTextField.resignFirstResponder()
+        self.searchController.dismiss(animated: true, completion: nil)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.isSearchOver = true
+        self.searchController.dismiss(animated: true, completion: nil)
+        self.searchController.searchBar.searchTextField.resignFirstResponder()
     }
     
     func setupSearchBar() {
         self.searchController.searchResultsUpdater = self
+        self.searchController.searchBar.delegate = self
+        self.searchController.searchBar.searchTextField.delegate = self
         self.searchController.obscuresBackgroundDuringPresentation = true
         self.searchController.searchBar.placeholder = "Search"
         self.searchController.searchBar.clipsToBounds = true
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.searchBar.sizeToFit()
-        self.searchController.searchBar.searchBarStyle = .minimal
+        self.searchController.searchBar.searchBarStyle = .prominent
         self.navigationItem.searchController = searchController
         self.navigationItem.searchController?.hidesNavigationBarDuringPresentation = false
         self.definesPresentationContext = true
