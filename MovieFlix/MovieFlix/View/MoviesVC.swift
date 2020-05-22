@@ -30,7 +30,8 @@ class MoviesVC: UIViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     var filteredMovies: [Movie] = []
-    private var isSearchBarEmpty: Bool {
+    var isSearchOver : Bool = false
+    var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
     var isFiltering: Bool {
@@ -122,12 +123,12 @@ extension MoviesVC {
         guard let movie = isNowPlaying ? viewModel?.movieList?.filter({$0.id == id}).first : viewModel?.topRatedMovies?.filter({$0.id == id}).first else {return}
         guard let indexPath = self.dataSource.indexPath(for: movie) else { return }
         DispatchQueue.main.async {
+            self.collectionView.deselectItem(at: indexPath, animated: true)
             let _ = isNowPlaying ? self.viewModel?.movieList?.remove(at: indexPath.row) :
-                self.viewModel?.topRatedMovies?.remove(at: indexPath.row)
+                           self.viewModel?.topRatedMovies?.remove(at: indexPath.row)
             var snapshort = self.dataSource.snapshot()
             snapshort.deleteItems([movie])
             self.dataSource.apply(snapshort, animatingDifferences: true)
-            self.collectionView.deselectItem(at: indexPath, animated: true)
         }
     }
     
@@ -181,5 +182,9 @@ extension MoviesVC : UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        print("sad,mnascvdg")
     }
 }
