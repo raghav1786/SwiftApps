@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--OnboardingVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="OnboardingVC" customModule="OnboardingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H7e-5h-wRm">
+                                <rect key="frame" x="0.0" y="810" width="414" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="bbJ-Yk-iVi"/>
+                                </constraints>
+                                <state key="normal" title="Have a trouble? Sign In"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3G4-M5-Cte">
+                                <rect key="frame" x="0.0" y="750" width="414" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="gFp-Pg-aSj"/>
+                                </constraints>
+                                <state key="normal" title="Getting Started"/>
+                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="lIk-zg-VWg">
+                                <rect key="frame" x="0.0" y="703" width="414" height="37"/>
+                                <connections>
+                                    <action selector="pageChanged:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9WD-Tp-Wx8"/>
+                                </connections>
+                            </pageControl>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vAI-i9-66w">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTc-tZ-ptP">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NLM-wz-F00">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="NLM-wz-F00" secondAttribute="trailing" id="fpL-XY-md8"/>
+                                            <constraint firstItem="NLM-wz-F00" firstAttribute="leading" secondItem="mTc-tZ-ptP" secondAttribute="leading" id="g7o-Ws-qma"/>
+                                            <constraint firstItem="NLM-wz-F00" firstAttribute="top" secondItem="mTc-tZ-ptP" secondAttribute="top" id="hv2-yT-5Fh"/>
+                                            <constraint firstAttribute="bottom" secondItem="NLM-wz-F00" secondAttribute="bottom" id="rMZ-ym-qgm"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="mTc-tZ-ptP" firstAttribute="top" secondItem="cLA-g8-cvc" secondAttribute="top" id="146-v7-Dhp"/>
+                                    <constraint firstItem="mTc-tZ-ptP" firstAttribute="bottom" secondItem="cLA-g8-cvc" secondAttribute="bottom" id="6Ie-Nb-DRw"/>
+                                    <constraint firstItem="mTc-tZ-ptP" firstAttribute="leading" secondItem="cLA-g8-cvc" secondAttribute="leading" id="OtA-gy-5EU"/>
+                                    <constraint firstItem="mTc-tZ-ptP" firstAttribute="trailing" secondItem="cLA-g8-cvc" secondAttribute="trailing" id="QIv-Ks-wZ1"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="RPi-GW-mov"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="cLA-g8-cvc"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="H7e-5h-wRm" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Ciy-cL-bQM"/>
+                            <constraint firstItem="3G4-M5-Cte" firstAttribute="top" secondItem="lIk-zg-VWg" secondAttribute="bottom" constant="10" id="DyY-2g-jqw"/>
+                            <constraint firstItem="lIk-zg-VWg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Hdm-z4-Gp2"/>
+                            <constraint firstItem="H7e-5h-wRm" firstAttribute="top" secondItem="3G4-M5-Cte" secondAttribute="bottom" constant="10" id="LLY-8H-0e5"/>
+                            <constraint firstItem="H7e-5h-wRm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MZI-lh-cwR"/>
+                            <constraint firstItem="H7e-5h-wRm" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="cRD-PZ-K8I"/>
+                            <constraint firstItem="3G4-M5-Cte" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="f7U-tE-kGz"/>
+                            <constraint firstItem="lIk-zg-VWg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="jyO-Ct-Zse"/>
+                            <constraint firstItem="3G4-M5-Cte" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oW8-TL-9oS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnGetStarted" destination="3G4-M5-Cte" id="dS4-hw-7Pe"/>
+                        <outlet property="btnSignIn" destination="H7e-5h-wRm" id="5DT-MU-M12"/>
+                        <outlet property="pageControl" destination="lIk-zg-VWg" id="HQ8-n4-OcU"/>
+                        <outlet property="scrollView" destination="vAI-i9-66w" id="b7R-3n-56e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+</document>
