@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uz6-ut-7TD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uz6-ut-7TD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,6 +20,9 @@
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TiL-s9-GmO">
                                 <rect key="frame" x="0.0" y="813" width="414" height="83"/>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.70980392160000005" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="83" id="TO5-IF-rI0"/>
+                                </constraints>
                                 <items>
                                     <tabBarItem title="NowPlaying" image="iconNowPlaying" id="H9P-N3-j9h">
                                         <color key="badgeColor" red="0.91372549020000005" green="0.70588235290000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -47,6 +52,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="uXl-oW-02W"/>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.70980392160000005" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.92549019610000005" green="0.70980392160000005" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -58,7 +64,6 @@
                             <constraint firstItem="TiL-s9-GmO" firstAttribute="leading" secondItem="Ibi-QJ-Zrt" secondAttribute="leading" id="k48-Rr-X5J"/>
                             <constraint firstItem="INM-CU-4wb" firstAttribute="trailing" secondItem="uXl-oW-02W" secondAttribute="trailing" id="yFB-9k-mZA"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="uXl-oW-02W"/>
                     </view>
                     <navigationItem key="navigationItem" id="xKZ-f5-95N"/>
                     <connections>
@@ -193,6 +198,7 @@
                                 <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tabBar>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="zmf-au-aKw"/>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.70980392160000005" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zmf-au-aKw" firstAttribute="trailing" secondItem="CGS-48-hPC" secondAttribute="trailing" id="3EI-Zr-aaQ"/>
@@ -206,7 +212,6 @@
                             <constraint firstItem="zmf-au-aKw" firstAttribute="trailing" secondItem="8yK-7W-VWb" secondAttribute="trailing" constant="40" id="yoT-mI-B2D"/>
                             <constraint firstItem="8yK-7W-VWb" firstAttribute="leading" secondItem="zmf-au-aKw" secondAttribute="leading" constant="40" id="zU4-sZ-IlV"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="zmf-au-aKw"/>
                     </view>
                     <connections>
                         <outlet property="movieCardBottomConstraint" destination="KhQ-BD-ysm" id="RO8-wJ-J8i"/>
@@ -230,10 +235,10 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.70980392160000005" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" systemColor="systemGrayColor"/>
                         <color key="barTintColor" red="0.92549019607843142" green="0.70980392156862748" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" systemColor="systemGrayColor"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -251,5 +256,8 @@
         <image name="iconNowPlaying" width="24" height="24"/>
         <image name="iconTopRated" width="24" height="24"/>
         <image name="text.badge.star" catalog="system" width="128" height="109"/>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
