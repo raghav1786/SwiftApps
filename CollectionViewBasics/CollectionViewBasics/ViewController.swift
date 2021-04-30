@@ -56,15 +56,3 @@ extension ViewController : UICollectionViewDataSource {
     }
     
 }
-
-
-//extension ViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        // dataArary is the managing array for your UICollectionView.
-//        let item = items[indexPath.row]
-//        let itemSize = item.size(withAttributes: [
-//            NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)
-//        ])
-//        return itemSize
-//    }
-//}
