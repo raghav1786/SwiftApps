@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Weather" customModuleProvider="target">
+            <connections>
+                <outlet property="stackView" destination="fRE-gk-XFU" id="J1F-EU-j29"/>
+                <outlet property="view" destination="id1-fh-gtm" id="3E1-A6-CUW"/>
+            </connections>
+        </placeholder>
+        <view contentMode="scaleToFill" id="id1-fh-gtm">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" spacing="100" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fRE-gk-XFU">
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                    <color key="backgroundColor" red="0.65075570344924927" green="0.92538982629776001" blue="0.84493905305862427" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="OHn-9E-mPh"/>
+            <color key="backgroundColor" red="0.65075570344924927" green="0.92538982629776001" blue="0.84493905305862427" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fRE-gk-XFU" firstAttribute="leading" secondItem="OHn-9E-mPh" secondAttribute="leading" id="0zh-rc-kJt"/>
+                <constraint firstItem="OHn-9E-mPh" firstAttribute="trailing" secondItem="fRE-gk-XFU" secondAttribute="trailing" id="jYg-3C-791"/>
+                <constraint firstAttribute="bottom" secondItem="fRE-gk-XFU" secondAttribute="bottom" id="oBs-IG-TF3"/>
+                <constraint firstItem="fRE-gk-XFU" firstAttribute="top" secondItem="OHn-9E-mPh" secondAttribute="top" id="yzu-YQ-Fgb"/>
+            </constraints>
+            <point key="canvasLocation" x="-2162.3188405797105" y="-773.4375"/>
+        </view>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+    </objects>
+</document>
