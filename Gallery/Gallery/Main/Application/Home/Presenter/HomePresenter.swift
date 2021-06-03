@@ -13,6 +13,26 @@ class HomePresenter {
 
 extension HomePresenter: HomePresentable {
     func onViewDidLoad() {
+        let albumsDataModel = AlbumsDataModel(albumsEmptyDelegate: self, photosForAlbumDelegate: self)
+        components.append(AlbumsBuilder().buildAlbumsModule(albumsDataModel: albumsDataModel))
         self.view?.display(components.compactMap { $0.view })
+    }
+}
+
+
+extension HomePresenter: AlbumsEmptyDelegate {
+    func onAlbumsEmpty() {
+        components.removeAll()
+        components.append(NoDataBuilder()
+                            .buildNoDataModule(noDataModel:
+                                                NoDataUIModel(titleMessage:
+                                                                NoData.albumsErrorMessage)))
+        self.view?.display(components.compactMap { $0.view })
+    }
+}
+
+extension HomePresenter: PhotosForAlbumDelegate {
+    func getPhotosForAlbum(albumID: Int32) {
+        
     }
 }

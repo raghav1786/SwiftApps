@@ -1,7 +1,7 @@
 class AlbumsRepository {
     let albumsServices = AlbumsServices()
-    func getPhotosForAlbum(completion : @escaping([PhotoEntityModel]?,Error?) -> ()) {
-        let photosUrl = Constants.photosUrl
+    func getPhotosForAlbum(albumId: Int, completion : @escaping([PhotoEntityModel]?,Error?) -> ()) {
+        let photosUrl = Constants.albumsUrl+"\(albumId)/photos"
         albumsServices.getPhotosForAlbum(urlString: photosUrl, completion: completion)
     }
     
