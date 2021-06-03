@@ -4,7 +4,7 @@ struct AlbumsEntityModel: Decodable {
 }
 
 struct AlbumEntityModel: Decodable {
-    var userId: Int32?
-    var id: Int32?
+    var userId: Int?
+    var id: Int?
     var title: String?
 }

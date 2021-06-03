@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlbumsViewController" customModule="Gallery" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="DSy-mo-Vyv" id="K4F-ZN-ZtD"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Lf5-Rs-fEP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DSy-mo-Vyv">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                    <color key="backgroundColor" red="0.65075570344924927" green="0.92538982629776001" blue="0.84493905305862427" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="sectionIndexColor" red="0.65075570344924927" green="0.92538982629776001" blue="0.84493905305862427" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="sectionIndexBackgroundColor" red="0.65075570344924927" green="0.92538982629776001" blue="0.84493905305862427" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="sectionIndexTrackingBackgroundColor" red="0.65075570344924927" green="0.92538982629776001" blue="0.84493905305862427" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Hb8-Gi-K93"/>
+                        <outlet property="delegate" destination="-1" id="lpg-nx-Ecy"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" red="0.65075570344924927" green="0.92538982629776001" blue="0.84493905305862427" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="DSy-mo-Vyv" secondAttribute="bottom" id="F8u-cK-UNa"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DSy-mo-Vyv" secondAttribute="trailing" id="LAI-UM-3pY"/>
+                <constraint firstItem="DSy-mo-Vyv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XLL-We-88F"/>
+                <constraint firstItem="DSy-mo-Vyv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="opL-be-fjU"/>
+            </constraints>
+            <point key="canvasLocation" x="-88" y="109"/>
+        </view>
+    </objects>
+</document>

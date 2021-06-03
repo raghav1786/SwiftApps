@@ -1,0 +1,3 @@
+protocol AlbumsEmptyDelegate {
+    func onAlbumsEmpty()
+}
