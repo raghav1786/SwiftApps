@@ -1,5 +1,7 @@
 # Gallery App 
 This is a gallery app to showcase albums, photos and photo details for a user.
+[galleryApp_recording.mov.zip](https://github.com/raghav1786/SwiftApps/files/6601191/galleryApp_recording.mov.zip)
+
 
 ## Key Features
 - we can see user details
