@@ -1,3 +1,3 @@
 protocol PhotosForAlbumDelegate {
-    func  getPhotosForAlbum(albumID: Int32)
+    func  getPhotosForAlbum(albumModel: AlbumEntityModel)
 }
