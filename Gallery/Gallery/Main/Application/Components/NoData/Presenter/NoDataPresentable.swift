@@ -1,0 +1,3 @@
+protocol NoDataPresentable {
+    func onViewDidLoad()
+}
