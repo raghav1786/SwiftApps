@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         let home = HomeBuilder().buildHomeModule()
         let navigationController = UINavigationController()
-        navigationController.navigationBar.backgroundColor = .purple
+        navigationController.navigationBar.backgroundColor = .navBarColor
         navigationController.navigationBar.tintColor = .navBarColor
         navigationController.viewControllers = [home]
         window.rootViewController = navigationController
