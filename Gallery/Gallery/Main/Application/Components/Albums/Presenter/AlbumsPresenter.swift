@@ -1,13 +1,11 @@
 import Foundation
 class AlbumsPresenter {
     private var interactor: AlbumsInteracting?
-    private var router: AlbumsRouting?
     private weak var view: AlbumsViewable?
     var albums = [AlbumEntityModel]()
-    init(view: AlbumsViewable,interactor: AlbumsInteracting, router: AlbumsRouting) {
+    init(view: AlbumsViewable,interactor: AlbumsInteracting) {
         self.view = view
         self.interactor = interactor
-        self.router = router
     }
 }
 
@@ -36,7 +34,7 @@ extension AlbumsPresenter: AlbumsPresentable {
         })
     }
     
-    func getPhotoForAlbum(albumID: Int) {
-        router?.openPhotosForThisAlbum(albumID: albumID)
+    func getPhotoForAlbum(albumModel: AlbumEntityModel) {
+        self.interactor?.albumsDataModel.photosForAlbumDelegate.getPhotosForAlbum(albumModel: albumModel)
     }
 }

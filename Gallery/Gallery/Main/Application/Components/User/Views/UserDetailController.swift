@@ -17,6 +17,7 @@ class UserDetailController: UIViewController {
         setFont()
         setColor()
         view.backgroundColor = .backgroundColor
+        ActivityIndicator.shared.addActivityIndicator(self.view)
         presenter?.onViewDidLoad()
     }
 }

@@ -1,5 +1,4 @@
 import UIKit
-
 class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var imageView: UIImageView!
     override func prepareForReuse() {

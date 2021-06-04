@@ -2,6 +2,7 @@ import UIKit
 import Foundation
 class AlbumsViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var albumName: UILabel!
     
     var presenter: AlbumsPresentable?
     private var cellIdentifier = "AlbumTableViewCell"
@@ -15,6 +16,9 @@ class AlbumsViewController: UIViewController {
     
     private func setup() {
         title = "Albums"
+        albumName.text = "Elige quod velit videre photos album infra in ea"
+        albumName.textColor = .black
+        self.navigationController?.isNavigationBarHidden = true
         tableView.backgroundColor = .backgroundColor
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
@@ -65,8 +69,8 @@ extension AlbumsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let album = presenter?.albums[indexPath.row],let albumId = album.id else {return}
-        presenter?.getPhotoForAlbum(albumID: albumId)
+        guard let albumModel = presenter?.albums[indexPath.row] else {return}
+        presenter?.getPhotoForAlbum(albumModel: albumModel)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

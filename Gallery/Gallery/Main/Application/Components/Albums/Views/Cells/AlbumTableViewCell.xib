@@ -32,7 +32,6 @@
                         </constraints>
                     </imageView>
                 </subviews>
-                <color key="backgroundColor" red="0.65075570344924927" green="0.92538982629776001" blue="0.84493905305862427" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="1l2-SM-CeO" secondAttribute="bottom" constant="23" id="Hfn-Lx-TlC"/>
                     <constraint firstAttribute="trailing" secondItem="CtA-kC-ZAN" secondAttribute="trailing" constant="16" id="JEG-4n-O6h"/>
@@ -43,7 +42,6 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <color key="backgroundColor" red="0.65075570344924927" green="0.92538982629776001" blue="0.84493905305862427" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="titleLabel" destination="1l2-SM-CeO" id="ioY-RC-jCf"/>
             </connections>
