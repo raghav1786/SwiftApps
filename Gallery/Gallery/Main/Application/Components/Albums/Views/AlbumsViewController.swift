@@ -16,7 +16,7 @@ class AlbumsViewController: UIViewController {
     
     private func setup() {
         title = "Albums"
-        albumName.text = "Elige quod velit videre photos album infra in ea"
+        albumName.text = "ad eligere sua photos album velit videre"
         albumName.textColor = .black
         self.navigationController?.navigationBar.backgroundColor = .navBarColor
         tableView.backgroundColor = .backgroundColor
