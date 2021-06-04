@@ -1,20 +1,37 @@
 import CoreLocation
 class HomePresenter {
     private weak var view: HomeViewable?
-    private var router: HomeRouting?
-    private var interactor: HomeInteracting?
     private var components: [ComponentView] = []
-    init(view: HomeViewable, router: HomeRouting, interactor: HomeInteracting) {
+    var isAlbumsVisible: Bool = false
+    var isUserDetailsVisible: Bool = false
+    init(view: HomeViewable) {
         self.view = view
-        self.router = router
-        self.interactor = interactor
     }
 }
 
 extension HomePresenter: HomePresentable {
     func onViewDidLoad() {
+        components.removeAll()
+        components.append(UserDetailsBuilder().buildUserDetailsModule())
+        isAlbumsVisible = true
+        isUserDetailsVisible = false
+        self.view?.display(components.compactMap { $0.view })
+    }
+    
+    func getAlbumsForUser() {
+        components.removeAll()
         let albumsDataModel = AlbumsDataModel(albumsEmptyDelegate: self, photosForAlbumDelegate: self)
         components.append(AlbumsBuilder().buildAlbumsModule(albumsDataModel: albumsDataModel))
+        isAlbumsVisible = false
+        isUserDetailsVisible = true
+        self.view?.display(components.compactMap { $0.view })
+    }
+    
+    func getUserDetails() {
+        components.removeAll()
+        components.append(UserDetailsBuilder().buildUserDetailsModule())
+        isAlbumsVisible = true
+        isUserDetailsVisible = false
         self.view?.display(components.compactMap { $0.view })
     }
 }
@@ -27,12 +44,19 @@ extension HomePresenter: AlbumsEmptyDelegate {
                             .buildNoDataModule(noDataModel:
                                                 NoDataUIModel(titleMessage:
                                                                 NoData.albumsErrorMessage)))
+        isAlbumsVisible = true
+        isUserDetailsVisible = true
         self.view?.display(components.compactMap { $0.view })
     }
 }
 
 extension HomePresenter: PhotosForAlbumDelegate {
-    func getPhotosForAlbum(albumID: Int32) {
-        
+    func getPhotosForAlbum(albumModel: AlbumEntityModel) {
+        components.removeAll()
+        components.append(PhotosBuilder()
+                            .buildPhotosModule(albumModel: albumModel))
+        isAlbumsVisible = true
+        isUserDetailsVisible = true
+        self.view?.display(components.compactMap { $0.view })
     }
 }

@@ -5,7 +5,7 @@ class PhotosViewController: UIViewController {
     @IBOutlet private var albumTitleLabel: UILabel!
     var presenter: PhotosPresenter?
     private var cellIdentifier = "PhotoCollectionViewCell"
-    
+    let operationQueue: OperationQueue = OperationQueue()
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -55,9 +55,7 @@ extension PhotosViewController: UICollectionViewDelegate, UICollectionViewDataSo
         guard let photoModel = presenter?.photosModel[indexPath.row] else {
             return UICollectionViewCell()
         }
-        DispatchQueue.main.async {
-            cell.bind(photo: photoModel)
-        }
+        cell.bind(photoModel: photoModel)
         return cell
     }
     

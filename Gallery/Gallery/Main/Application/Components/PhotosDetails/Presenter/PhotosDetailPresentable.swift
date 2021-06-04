@@ -1,0 +1,3 @@
+protocol PhotosDetailPresentable {
+    func onViewDidLoad()
+}
