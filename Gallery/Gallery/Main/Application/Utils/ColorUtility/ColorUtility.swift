@@ -7,7 +7,7 @@ extension UIColor {
             return #colorLiteral(red: 1, green: 0.0915768519, blue: 0.1535034478, alpha: 1)
     }
     public class var navBarColor: UIColor {
-        return .purple
+        return #colorLiteral(red: 0, green: 0.6997660995, blue: 0.468921423, alpha: 1)
     }
     
     public class var textColor: UIColor {

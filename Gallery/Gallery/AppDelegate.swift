@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let home = HomeBuilder().buildHomeModule()
         let navigationController = UINavigationController()
-        navigationController.navigationBar.tintColor = .purple
+        navigationController.navigationBar.backgroundColor = .navBarColor
         navigationController.viewControllers = [home]
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

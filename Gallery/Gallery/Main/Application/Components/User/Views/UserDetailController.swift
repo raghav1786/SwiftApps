@@ -16,7 +16,7 @@ class UserDetailController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         setFont()
         setColor()
-        view.backgroundColor = .backgroundColor
+        view.backgroundColor = .white
         ActivityIndicator.shared.addActivityIndicator(self.view)
         presenter?.onViewDidLoad()
     }

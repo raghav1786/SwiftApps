@@ -18,7 +18,7 @@ class AlbumsViewController: UIViewController {
         title = "Albums"
         albumName.text = "Elige quod velit videre photos album infra in ea"
         albumName.textColor = .black
-        self.navigationController?.navigationBar.tintColor = .navBarColor
+        self.navigationController?.navigationBar.backgroundColor = .navBarColor
         tableView.backgroundColor = .backgroundColor
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
