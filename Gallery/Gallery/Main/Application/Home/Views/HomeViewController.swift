@@ -8,8 +8,18 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        handleNavigationBar()
         addBarButtonItems()
         presenter?.onViewDidLoad()
+    }
+    
+    private func handleNavigationBar() {
+        self.navigationController?.navigationBar.backgroundColor = .navBarColor
+        self.navigationController?.navigationBar.barTintColor
+            = .navBarColor
+        self.navigationController?.navigationBar.tintColor
+            = .black
+        self.navigationController?.navigationBar.isTranslucent = false
     }
     
     
@@ -17,14 +27,14 @@ class HomeViewController: UIViewController {
         let userBarButtonItem = UIBarButtonItem(title: "Details usor", style: .done, target: self, action: #selector(userDetailsClicked))
         let albumsBarButtonItem = UIBarButtonItem(title: "Albums", style: .done, target: self, action: #selector(albumsClicked))
         if presenter?.isAlbumsVisible ?? false {
-            self.navigationItem.rightBarButtonItem = albumsBarButtonItem
-        } else {
-            self.navigationItem.rightBarButtonItem = nil
-        }
-        if presenter?.isUserDetailsVisible ?? false {
-            self.navigationItem.leftBarButtonItem = userBarButtonItem
+            self.navigationItem.leftBarButtonItem = albumsBarButtonItem
         } else {
             self.navigationItem.leftBarButtonItem = nil
+        }
+        if presenter?.isUserDetailsVisible ?? false {
+            self.navigationItem.rightBarButtonItem = userBarButtonItem
+        } else {
+            self.navigationItem.rightBarButtonItem = nil
         }
     }
     

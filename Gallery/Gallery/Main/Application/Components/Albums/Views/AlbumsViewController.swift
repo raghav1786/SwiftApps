@@ -16,9 +16,9 @@ class AlbumsViewController: UIViewController {
     
     private func setup() {
         title = "Albums"
-        albumName.text = "Elige quod velit videre photos album infra in ea"
+        albumName.text = "ad eligere sua photos album velit videre".capitalizingFirstLetter()
         albumName.textColor = .black
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.navigationBar.backgroundColor = .navBarColor
         tableView.backgroundColor = .backgroundColor
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)

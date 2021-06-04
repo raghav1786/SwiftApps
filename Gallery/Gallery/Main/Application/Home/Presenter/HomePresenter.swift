@@ -12,9 +12,10 @@ class HomePresenter {
 extension HomePresenter: HomePresentable {
     func onViewDidLoad() {
         components.removeAll()
-        components.append(UserDetailsBuilder().buildUserDetailsModule())
-        isAlbumsVisible = true
-        isUserDetailsVisible = false
+        let albumsDataModel = AlbumsDataModel(albumsEmptyDelegate: self, photosForAlbumDelegate: self)
+        components.append(AlbumsBuilder().buildAlbumsModule(albumsDataModel: albumsDataModel))
+        isAlbumsVisible = false
+        isUserDetailsVisible = true
         self.view?.display(components.compactMap { $0.view })
     }
     

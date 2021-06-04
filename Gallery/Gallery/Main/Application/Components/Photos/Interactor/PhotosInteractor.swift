@@ -1,5 +1,5 @@
 class PhotosInteractor {
-    private let albumsRepository = AlbumsRepository()
+    private let photosRepository = PhotosRepository()
     private let albumModel: AlbumEntityModel
     
     init(albumModel: AlbumEntityModel) {
@@ -10,7 +10,7 @@ class PhotosInteractor {
 extension PhotosInteractor: PhotosInteracting {
     func getPhotosForAlbum(completion : @escaping([PhotoEntityModel]?,Error?) -> ()) {
         guard let albumId = albumModel.id else {return}
-        albumsRepository.getPhotosForAlbum(albumId: albumId, completion: completion)
+        photosRepository.getPhotosForAlbum(albumId: albumId, completion: completion)
     }
     
     func getAlbumTitle() -> String {

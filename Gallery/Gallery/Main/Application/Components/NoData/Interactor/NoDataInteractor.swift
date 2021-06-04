@@ -1,11 +1,11 @@
-class NoCityInteractor {
+class NoDataInteractor {
     private var noDataModel: NoDataUIModel
     init(noDataModel: NoDataUIModel) {
         self.noDataModel = noDataModel
     }
 }
 
-extension NoCityInteractor: NoDataInteracting {
+extension NoDataInteractor: NoDataInteracting {
     func getNoDataModule() -> NoDataUIModel {
         return noDataModel
     }

@@ -17,7 +17,7 @@ class PhotosViewController: UIViewController {
     
     private func setup() {
         title = "photos"
-        navigationController?.navigationBar.backgroundColor = .purple
+        navigationController?.navigationBar.backgroundColor = .navBarColor
         albumTitleLabel.text = presenter?.getAlbumTitle().capitalizingFirstLetter()
         ActivityIndicator.shared.addActivityIndicator(self.view)
     }
