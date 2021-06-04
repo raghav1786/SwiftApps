@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotosDetailController" customModule="Gallery" customModuleProvider="target">
             <connections>
                 <outlet property="photoImageView" destination="t8y-TI-cvB" id="42U-fB-K6R"/>
-                <outlet property="photoTitle" destination="vqO-ne-X8S" id="CEa-GW-OUI"/>
+                <outlet property="photoTitle" destination="hC0-Zm-uMn" id="RiF-nD-PcA"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Lf5-Rs-fEP"/>
             </connections>
         </placeholder>
@@ -23,23 +23,31 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t8y-TI-cvB">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="culpa odio esse rerum omnis laboriosam voluptate repudiandae" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqO-ne-X8S">
-                    <rect key="frame" x="20" y="150" width="374" height="48"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
-                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hC0-Zm-uMn" customClass="MarqueeLabel" customModule="PhotoViewer" customModuleProvider="target">
+                    <rect key="frame" x="56.5" y="153" width="301" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <accessibility key="accessibilityConfiguration" identifier="PhotoDetail-LblTitle">
+                        <accessibilityTraits key="traits" staticText="YES"/>
+                    </accessibility>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="7Fu-oi-Uhh"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="301" id="Po3-f3-h2b"/>
+                        <constraint firstAttribute="height" constant="40" id="hN6-T7-rPt"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                    <color key="textColor" red="0.079670801760000007" green="0.3153115809" blue="0.62369561200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="hC0-Zm-uMn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="109" id="03B-rA-J1O"/>
                 <constraint firstItem="t8y-TI-cvB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1q7-nU-sHK"/>
                 <constraint firstItem="t8y-TI-cvB" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="2bT-5m-Awp"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vqO-ne-X8S" secondAttribute="trailing" constant="20" id="3ZD-zA-VrR"/>
-                <constraint firstItem="vqO-ne-X8S" firstAttribute="top" secondItem="t8y-TI-cvB" secondAttribute="top" constant="150" id="SNG-7h-a23"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="t8y-TI-cvB" secondAttribute="trailing" id="Uh9-Vz-ed5"/>
+                <constraint firstItem="hC0-Zm-uMn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="W2p-gA-0mq"/>
                 <constraint firstItem="t8y-TI-cvB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="pEa-gt-Xxd"/>
-                <constraint firstItem="vqO-ne-X8S" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="zc1-kS-nrf"/>
             </constraints>
             <point key="canvasLocation" x="-88.405797101449281" y="108.48214285714285"/>
         </view>

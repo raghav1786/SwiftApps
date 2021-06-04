@@ -1,7 +1,7 @@
 import UIKit
 import Foundation
 class PhotosDetailController: UIViewController {
-    @IBOutlet private var photoTitle: UILabel!
+    @IBOutlet private var photoTitle: MarqueeLabel!
     @IBOutlet private var photoImageView: UIImageView!
     var presenter: PhotosDetailPresentable?
     
@@ -27,7 +27,9 @@ class PhotosDetailController: UIViewController {
 extension PhotosDetailController: PhotosDetailViewable {
     func setData(photoModel: PhotoEntityModel) {
         if let title = photoModel.title {
-            photoTitle.text = title.capitalizingFirstLetter()
+            photoTitle.innerText = title.capitalizingFirstLetter()
+            photoTitle.innerSize = 20
+            photoTitle.innerColor = .black
         }
         photoImageView.loadImage(urlString: photoModel.urlString ?? "")
     }
