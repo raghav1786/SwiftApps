@@ -1,0 +1,3 @@
+protocol UserDetailPresentable {
+    func onViewDidLoad()
+}
