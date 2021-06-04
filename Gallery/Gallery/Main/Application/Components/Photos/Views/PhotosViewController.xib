@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotosViewController" customModule="Gallery" customModuleProvider="target">
+            <connections>
+                <outlet property="albumTitleLabel" destination="jZf-HC-Gt9" id="99j-mm-VUu"/>
+                <outlet property="collectionView" destination="uag-Fy-fLJ" id="gd1-88-JcX"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Lf5-Rs-fEP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="uag-Fy-fLJ">
+                    <rect key="frame" x="0.0" y="105" width="414" height="757"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4U3-tm-IJq">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="hbV-Oh-upm"/>
+                        <outlet property="delegate" destination="-1" id="P9v-Y2-uLN"/>
+                        <outlet property="dragDelegate" destination="-1" id="agJ-dn-Eai"/>
+                        <outlet property="dropDelegate" destination="-1" id="qyH-UP-sT7"/>
+                    </connections>
+                </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="please choose an album below to see photos in it" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZf-HC-Gt9">
+                    <rect key="frame" x="20" y="54" width="374" height="41"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="uag-Fy-fLJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5xW-Jx-z50"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="jZf-HC-Gt9" secondAttribute="trailing" constant="20" id="6RQ-uP-pon"/>
+                <constraint firstItem="jZf-HC-Gt9" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="B19-RH-xXe"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="uag-Fy-fLJ" secondAttribute="trailing" id="Y7a-Qm-shT"/>
+                <constraint firstItem="uag-Fy-fLJ" firstAttribute="top" secondItem="jZf-HC-Gt9" secondAttribute="bottom" constant="10" id="aN1-mg-Gpa"/>
+                <constraint firstItem="jZf-HC-Gt9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="sSx-eP-LfN"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="uag-Fy-fLJ" secondAttribute="bottom" id="tCF-54-n57"/>
+            </constraints>
+            <point key="canvasLocation" x="-88.405797101449281" y="108.48214285714285"/>
+        </view>
+    </objects>
+</document>
