@@ -6,11 +6,11 @@ enum AppFontName: String {
 }
 
 enum AppFontWeight: Double {
-    case light = 14.0
+    case light = 17.0
     case regular = 20.0
     case lowerMedium = 21.0
     case medium = 30.0
-    case upperMedium = 50.0
+    case upperMedium = 40.0
     case high = 80.0
 }
 
@@ -32,7 +32,7 @@ extension UIFont {
     }
 
     static func heading() -> UIFont {
-        return UIFont(name: AppFontName.regular.rawValue, size: CGFloat(AppFontWeight.upperMedium.rawValue))!
+        return UIFont(name: AppFontName.medium.rawValue, size: CGFloat(AppFontWeight.upperMedium.rawValue))!
     }
 
     static func bigHeading() -> UIFont {

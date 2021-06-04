@@ -55,8 +55,9 @@ extension PhotosViewController: UICollectionViewDelegate, UICollectionViewDataSo
         guard let photoModel = presenter?.photosModel[indexPath.row] else {
             return UICollectionViewCell()
         }
-        cell.bind(photo: photoModel)
-        
+        DispatchQueue.main.async {
+            cell.bind(photo: photoModel)
+        }
         return cell
     }
     
