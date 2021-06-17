@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCollectionViewCell" id="hQH-cx-NY1" customClass="MovieCollectionViewCell" customModule="BookMyShow" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="642" height="277"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="PYf-3s-96I">
+                <rect key="frame" x="0.0" y="0.0" width="642" height="277"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Y0Y-HQ-yaR">
+                        <rect key="frame" x="20" y="10" width="602" height="217"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qn1-ml-YPk">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="217"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="drS-iz-zeS"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XAJ-ei-l6H">
+                                <rect key="frame" x="110" y="0.0" width="492" height="217"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="l9g-gf-NPx">
+                                        <rect key="frame" x="0.0" y="0.0" width="492" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Justice League Dark: Apokolips War" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aaf-MU-Xi6">
+                                                <rect key="frame" x="0.0" y="0.0" width="467" height="30"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPd-en-sGW" userLabel="deleteBtn">
+                                                <rect key="frame" x="472" y="0.0" width="20" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="2rI-kC-K2d"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.96130555870000001" green="0.19780579970000001" blue="0.29188903220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <state key="normal" image="xmark" catalog="system"/>
+                                                <connections>
+                                                    <action selector="deleteClickedWithSender:" destination="hQH-cx-NY1" eventType="touchUpInside" id="CXl-NB-7pW"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="O4q-Yw-dLd"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgc-CC-1zD">
+                                        <rect key="frame" x="0.0" y="30" width="492" height="187"/>
+                                        <string key="text">Earth is decimated after intergalactic tyrant Darkseid has devastated the Justice League in a poorly executed war by the DC Super Heroes. Now the remaining bastions of good – the Justice League, Teen Titans, Suicide Squad and assorted others – must regroup, strategize and take the war to Darkseid in order to save the planet and its surviving inhabitants.</string>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="TzM-uy-Hj2">
+                        <rect key="frame" x="20" y="237" width="602" height="30"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uni-g5-SxT">
+                                <rect key="frame" x="0.0" y="0.0" width="442" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Date: " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRY-eX-aTz">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="N4r-hK-xa2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="24/03/2021" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Swk-9k-bHu">
+                                        <rect key="frame" x="105" y="0.0" width="337" height="30"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sX-ft-in2">
+                                <rect key="frame" x="472" y="0.0" width="130" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.42167727630000001" blue="0.40515169449999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="7HJ-XG-rY1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Book Now">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="bookNowClickedWithSender:" destination="hQH-cx-NY1" eventType="touchUpInside" id="lkc-7D-xDp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="hfu-fi-l0g"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="Y0Y-HQ-yaR" firstAttribute="top" secondItem="PYf-3s-96I" secondAttribute="top" constant="10" id="C2a-Xj-Lew"/>
+                    <constraint firstAttribute="trailing" secondItem="Y0Y-HQ-yaR" secondAttribute="trailing" constant="20" id="OKe-d8-WNJ"/>
+                    <constraint firstAttribute="bottom" secondItem="TzM-uy-Hj2" secondAttribute="bottom" constant="10" id="PMB-gZ-y8a"/>
+                    <constraint firstItem="TzM-uy-Hj2" firstAttribute="leading" secondItem="PYf-3s-96I" secondAttribute="leading" constant="20" id="aAQ-NQ-uNb"/>
+                    <constraint firstItem="Y0Y-HQ-yaR" firstAttribute="leading" secondItem="PYf-3s-96I" secondAttribute="leading" constant="20" id="bEa-ha-XMX"/>
+                    <constraint firstItem="TzM-uy-Hj2" firstAttribute="top" secondItem="Y0Y-HQ-yaR" secondAttribute="bottom" constant="10" id="tVn-Ii-zVu"/>
+                    <constraint firstAttribute="trailing" secondItem="TzM-uy-Hj2" secondAttribute="trailing" constant="20" id="xe2-Dn-uHY"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <size key="customSize" width="642" height="277"/>
+            <connections>
+                <outlet property="bookNowButton" destination="5sX-ft-in2" id="5z1-3h-Fbr"/>
+                <outlet property="deleteBtn" destination="nPd-en-sGW" id="eTt-Pt-mvc"/>
+                <outlet property="movieDesc" destination="Dgc-CC-1zD" id="6mb-Ba-pBU"/>
+                <outlet property="movieImageView" destination="qn1-ml-YPk" id="Uml-ws-6wU"/>
+                <outlet property="movieTitle" destination="Aaf-MU-Xi6" id="oQk-C1-z4p"/>
+                <outlet property="releaseDate" destination="Swk-9k-bHu" id="YJr-dz-x6n"/>
+            </connections>
+            <point key="canvasLocation" x="-50.724637681159422" y="131.58482142857142"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+    </resources>
+</document>
