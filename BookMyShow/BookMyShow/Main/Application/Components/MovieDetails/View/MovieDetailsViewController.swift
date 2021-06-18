@@ -22,6 +22,9 @@ class MovieDetailsViewController: UIViewController {
         movieCardBottomConstraint.constant =  MovieDetailsConstant.movieCardBottomConstraint
         guard let movie = viewModel?.movie else { return }
         movieDetailsCard?.configureCell(model: MovieDetailsCardUIModel(votes: movie.popularity, movieTitle: movie.title, movieDesc: movie.overview, releaseDate: movie.release_date))
+        movieDetailsCard?.similarMoviesClicked = { [weak self] in
+            self?.similarMoviesClicked()
+        }
     }
     
     private func setupUI() {
@@ -46,5 +49,14 @@ class MovieDetailsViewController: UIViewController {
     @objc private func handleSwipeUp(sender: UITapGestureRecognizer) {
         movieDetailsCard?.bounceView()
         movieCardBottomConstraint.constant = MovieDetailsConstant.movieCardBottomConstraintSwipe
+    }
+    
+    private func similarMoviesClicked() {
+        guard let similarMoviesViewController = SimilarMoviesViewController.createInstance(storyboard: .main) as? SimilarMoviesViewController else{return}
+        let similarMoviesViewModel = SimilarMoviesViewModel()
+        similarMoviesViewModel.selectedMovieID = viewModel?.movie?.id ?? 0
+        similarMoviesViewController.viewModel = similarMoviesViewModel
+        navigationController?.pushViewController(similarMoviesViewController,
+                                                 animated: true)
     }
 }
