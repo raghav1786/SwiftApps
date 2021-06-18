@@ -7,6 +7,7 @@ struct Constants {
     static let movieTableCellIdentifier = "MovieTableCell"
     static let movieSearchHeaderCellIdentifier = "SearchHeaderView"
     static let activityIndicatorString = "Loading Movies..."
+    static let similarMoviesURL = "/similar"
 }
 
 struct ApiKey {
