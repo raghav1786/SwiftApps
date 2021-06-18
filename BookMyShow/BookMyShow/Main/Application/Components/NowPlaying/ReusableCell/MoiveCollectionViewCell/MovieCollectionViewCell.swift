@@ -1,7 +1,6 @@
-
 import UIKit
-
 class MovieCollectionViewCell: UICollectionViewCell {
+    //MARK:- Outlets
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieDesc: UILabel!
@@ -9,10 +8,12 @@ class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var bookNowButton : UIButton!
     
+    //MARK:- Objects
     var movieID : Int64?
     var deleteButtonAction : ((Int64?) -> ())?
     var bookNowButtonAction : ((Int64?) -> ())?
     
+    //MARK:- Action Methods
     @IBAction func deleteClicked(sender : Any ) {
         deleteButtonAction?(movieID)
     }
@@ -21,14 +22,15 @@ class MovieCollectionViewCell: UICollectionViewCell {
         bookNowButtonAction?(movieID)
     }
     
+    //MARK:- Custom Methods
     func configureCell(viewModel:MovieListModel){
         layoutIfNeeded()
         movieTitle.text = viewModel.movieTitle
         releaseDate.text = viewModel.releaseDate
         movieDesc.text = viewModel.movieDesc
         movieID = viewModel.movieID
-        movieImageView.layer.cornerRadius = 10.0
-        bookNowButton.layer.cornerRadius = 10.0
+        movieImageView.layer.cornerRadius = NowPlayingConstants.cornerRadius
+        bookNowButton.layer.cornerRadius = NowPlayingConstants.cornerRadius
         deleteBtn.tintColor = .systemRed
         
         if !viewModel.movieImageUrlString.isEmpty {
