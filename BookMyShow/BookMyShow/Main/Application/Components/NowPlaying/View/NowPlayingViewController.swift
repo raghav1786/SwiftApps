@@ -4,24 +4,25 @@ fileprivate typealias UserDataSource     = UICollectionViewDiffableDataSource<No
 fileprivate typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<NowPlayingViewController.Section, Movie>
 
 class NowPlayingViewController: UIViewController {
-    @IBOutlet weak var collectionView : UICollectionView!
+    //MARK:- Outlets
+    @IBOutlet weak private var collectionView : UICollectionView!
     
+    //MARK:- Objects
     var viewModel : NowPlayingViewModel?
-    fileprivate lazy var dataSource = makeDataSource()
-    var refreshControl = UIRefreshControl()
     
+    fileprivate lazy var dataSource = makeDataSource()
     fileprivate enum Section {
         case main
     }
     
+    private var refreshControl = UIRefreshControl()
+    
+    //MARK:- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
-        overrideUserInterfaceStyle = .light
-        title = "Now Playing"
         viewModel = NowPlayingViewModel()
+        setupNavBar()
         callMovieListApi()
-        extendedLayoutIncludesOpaqueBars = true
         setUpRefreshControl()
         setupCollectionView()
         setupCollectionViewLayout()
@@ -29,22 +30,13 @@ class NowPlayingViewController: UIViewController {
     }
     
     private func setupNavBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .done, target: self, action: #selector(searchClicked))
+        title = NowPlayingConstants.nowPlayingTitle
+        overrideUserInterfaceStyle = .light
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: NowPlayingConstants.searchImageTitle), style: .done, target: self, action: #selector(searchClicked))
+        extendedLayoutIncludesOpaqueBars = true
     }
     
-    @objc private func searchClicked(_ sender: AnyObject) {
-        guard let searchViewController = SearchViewController.createInstance(storyboard: .main) as? SearchViewController else{return}
-        let searchMoviesViewModel = SearchMoviesViewModel()
-        searchViewController.viewModel = searchMoviesViewModel
-        navigationController?.pushViewController(searchViewController,
-                                                      animated: true)
-    }
-    
-    private func setUpRefreshControl() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-    }
-    
+    //MARK:- Movie List Api
     private func callMovieListApi() {
         ActivityIndicator.shared.addActivityIndicator(self.view)
         self.viewModel?.getMovieList() { [weak self] (success) in
@@ -63,14 +55,90 @@ class NowPlayingViewController: UIViewController {
             ActivityIndicator.shared.removeActivityIndicator()
         }
     }
+}
+
+//MARK:- Refresh Control
+extension NowPlayingViewController {
+    private func setUpRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: NowPlayingConstants.refeshControlText)
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+    }
     
     private func setupTheme() {
         refreshControl.tintColor = .systemRed
     }
+    
+    @objc private func refresh(_ sender: AnyObject) {
+        self.refreshControl.endRefreshing()
+        callMovieListApi()
+    }
 }
 
-// collection view diffable dataSource and applySnapshot
+//MARK:- Search
+extension NowPlayingViewController {
+    @objc private func searchClicked(_ sender: AnyObject) {
+        guard let searchViewController = SearchViewController.createInstance(storyboard: .main) as? SearchViewController else{return}
+        let searchMoviesViewModel = SearchMoviesViewModel()
+        searchMoviesViewModel.movieListFromApi = viewModel?.movieList
+        searchMoviesViewModel.movieList = viewModel?.movieList
+        searchViewController.viewModel = searchMoviesViewModel
+        navigationController?.pushViewController(searchViewController,
+                                                 animated: true)
+    }
+}
 
+
+//MARK:- Collection View Setup
+extension NowPlayingViewController {
+    
+    private func setupCollectionView() {
+        self.collectionView.refreshControl = refreshControl
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = dataSource
+        self.collectionView.register(UINib(nibName: Constants.movieCellIdentifier,
+                                           bundle: Bundle.main), forCellWithReuseIdentifier: Constants.movieCellIdentifier)
+        collectionView.showsVerticalScrollIndicator = false
+        applySnapshot(animatingDifferences: false)
+    }
+    
+    private func setupCollectionViewLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        self.collectionView.collectionViewLayout = layout
+        self.collectionView.isPagingEnabled = true
+        self.collectionView.showsHorizontalScrollIndicator = false
+        self.collectionView.alwaysBounceVertical = true;
+        layout.collectionView?.backgroundColor = .white
+    }
+    
+    private func deleteMovie(_ id : Int64) {
+        guard let movie = viewModel?.movieList?.filter({$0.id == id}).first else {return}
+        guard let indexPath = self.dataSource.indexPath(for: movie) else { return }
+        DispatchQueue.main.async {
+            self.collectionView.deselectItem(at: indexPath, animated: true)
+            let _ = self.viewModel?.movieList?.remove(at: indexPath.row)
+            var snapshort = self.dataSource.snapshot()
+            snapshort.deleteItems([movie])
+            self.dataSource.apply(snapshort, animatingDifferences: true)
+        }
+    }
+    
+    private func bookNowMovie(_ id : Int64) {
+        guard let movieName = viewModel?.movieList?.filter({$0.id == id}).first else {return}
+        guard let indexPath = self.dataSource.indexPath(for: movieName) else { return }
+        guard let movie = dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        guard let movieDetailsVC = MovieDetailsViewController.createInstance(storyboard: .main) as? MovieDetailsViewController else{return}
+        let movieDetailVM = MovieDetailsViewModel(movie: movie)
+        movieDetailsVC.viewModel = movieDetailVM
+        navigationController?.pushViewController(movieDetailsVC,
+                                                 animated: true)
+        
+    }
+}
+
+//MARK:- Collection View DataSource
 extension NowPlayingViewController {
     fileprivate func makeDataSource() -> UserDataSource {
         let dataSource = UserDataSource(
@@ -98,66 +166,18 @@ extension NowPlayingViewController {
         return dataSource
     }
     
-    private func deleteMovie(_ id : Int64) {
-        guard let movie = viewModel?.movieList?.filter({$0.id == id}).first else {return}
-        guard let indexPath = self.dataSource.indexPath(for: movie) else { return }
-        DispatchQueue.main.async {
-            self.collectionView.deselectItem(at: indexPath, animated: true)
-            let _ = self.viewModel?.movieList?.remove(at: indexPath.row)
-            var snapshort = self.dataSource.snapshot()
-            snapshort.deleteItems([movie])
-            self.dataSource.apply(snapshort, animatingDifferences: true)
-        }
-    }
-    
-    private func bookNowMovie(_ id : Int64) {
-        guard let movieName = viewModel?.movieList?.filter({$0.id == id}).first else {return}
-        guard let indexPath = self.dataSource.indexPath(for: movieName) else { return }
-        guard let movie = dataSource.itemIdentifier(for: indexPath) else {
-            return
-        }
-        guard let movieDetailsVC = MovieDetailsViewController.createInstance(storyboard: .main) as? MovieDetailsViewController else{return}
-        let movieDetailVM = MovieDetailsViewModel(movie: movie)
-        movieDetailsVC.viewModel = movieDetailVM
-        navigationController?.pushViewController(movieDetailsVC,
-                                                      animated: true)
-        
-    }
-    
-    private func setupCollectionView() {
-        self.collectionView.refreshControl = refreshControl
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = dataSource
-        self.collectionView.register(UINib(nibName: Constants.movieCellIdentifier,
-                                           bundle: Bundle.main), forCellWithReuseIdentifier: Constants.movieCellIdentifier)
-        collectionView.showsVerticalScrollIndicator = false
-        applySnapshot(animatingDifferences: false)
-    }
-    
-    private func setupCollectionViewLayout() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        self.collectionView.collectionViewLayout = layout
-        self.collectionView.isPagingEnabled = true
-        self.collectionView.showsHorizontalScrollIndicator = false
-        self.collectionView.alwaysBounceVertical = true;
-        layout.collectionView?.backgroundColor = .white
-    }
-    
-    func applySnapshot(animatingDifferences: Bool = true) {
+    private func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = DataSourceSnapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(viewModel?.movieList ?? [],toSection: .main)
         dataSource.apply(snapshot,
                          animatingDifferences: animatingDifferences)
     }
-    
-    @objc private func refresh(_ sender: AnyObject) {
-        self.refreshControl.endRefreshing()
-        callMovieListApi()
-    }
 }
 
+
+
+ //MARK:- Collection View Delegate, DelegateFlowLayout
 extension NowPlayingViewController : UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,
@@ -179,12 +199,12 @@ extension NowPlayingViewController : UICollectionViewDelegate,UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         cell.alpha = 0
-
+        
         UIView.animate(
             withDuration: 0.3,
             delay: 0.05,
             animations: {
                 cell.alpha = 1
-        })
+            })
     }
 }
