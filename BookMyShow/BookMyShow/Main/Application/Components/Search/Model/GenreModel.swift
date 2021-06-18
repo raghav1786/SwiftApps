@@ -1,10 +1,3 @@
-//
-//  GenreModel.swift
-//  BookMyShow
-//
-//  Created by RAGHAV SHARMA on 17/06/21.
-//
-
 import UIKit
 class GenreModel {
     static let shared = GenreModel()

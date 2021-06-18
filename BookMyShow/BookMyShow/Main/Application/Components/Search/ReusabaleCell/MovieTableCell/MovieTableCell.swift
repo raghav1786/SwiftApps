@@ -1,21 +1,13 @@
-//
-//  MovieTableCell.swift
-//  BookMyShow
-//
-//  Created by Neeraj Solanki on 10/10/20.
-//  Copyright © 2020 Mr.Solanki. All rights reserved.
-//
-
 import UIKit
-
 class MovieTableCell: UITableViewCell {
-
+//MARK: Outlets
     @IBOutlet weak var bookButton: UIButton!
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var moviePosterImageView: UIImageView!
     @IBOutlet weak var genreLabel: UILabel!
     
+    //MARK: Variable
     var movieID : Int64?
     var bookNowButtonAction : ((Int64?) -> ())?
     
@@ -32,6 +24,7 @@ class MovieTableCell: UITableViewCell {
         // Configure the view for the selected state
     } 
     
+    //MARK: adding Data 
     func configureCell(viewModel:MovieCellViewModel){
         layoutIfNeeded()
         movieTitleLabel.text = viewModel.movieTitle
@@ -47,7 +40,7 @@ class MovieTableCell: UITableViewCell {
         }
     }
     
-    @IBAction func bookButtonAction(_ sender: UIButton) {
+    @IBAction private func bookButtonAction(_ sender: UIButton) {
         bookNowButtonAction?(movieID)
     }
 }

@@ -1,6 +1,3 @@
-import Foundation
-import UIKit
-
 protocol RecentSearchManagerProtocol {
     func getRecentSearch() -> [Movie]
     func updateRecentSearch(newSearch:Movie)

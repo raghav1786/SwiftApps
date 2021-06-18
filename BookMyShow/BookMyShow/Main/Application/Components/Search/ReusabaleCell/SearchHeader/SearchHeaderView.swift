@@ -1,11 +1,3 @@
-//
-//  SearchHeaderView.swift
-//  BookMyShow
-//
-//  Created by Neeraj Solanki on 12/10/20.
-//  Copyright © 2020 Mr.Solanki. All rights reserved.
-//
-
 import UIKit
 class SearchHeaderView: UIView {
     @IBOutlet var contentView: SearchHeaderView!

@@ -1,50 +1,50 @@
-
 import UIKit
-
 class MovieDetailsViewController: UIViewController {
-    @IBOutlet weak var movieDetailImageView : UIImageView?
-    @IBOutlet weak var movieDetailsCard: MovieDetailsCardCell?
-    @IBOutlet weak var movieCardBottomConstraint : NSLayoutConstraint!
+    //MARK:- Outlets
+    @IBOutlet weak private var movieDetailImageView : UIImageView?
+    @IBOutlet weak private var movieDetailsCard: MovieDetailsCardCell?
+    @IBOutlet weak private var movieCardBottomConstraint : NSLayoutConstraint!
     
+    //MARK:- Objects
     var viewModel : MovieDetailsViewModel?
     
+    //MARK:- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Movie Details"
-        setupNavBar()
-        overrideUserInterfaceStyle = .light
-        movieDetailsCard?.titleLbl.text = viewModel?.movie?.title
-        movieDetailsCard?.descOverview.text = viewModel?.movie?.overview
-        movieDetailsCard?.dateRelease.text = viewModel?.movie?.release_date
-        movieDetailsCard?.votes.text = "\(String(describing: viewModel?.movie?.popularity ?? 0.0))"
-        movieCardBottomConstraint.constant = 20.0
-        let swipeUp = UISwipeGestureRecognizer(target: self,
-                                               action: #selector(handleSwipeUp(sender:)))
-        swipeUp.direction = .up
-        movieDetailsCard?.addGestureRecognizer(swipeUp)
+        setupNavBarTitle()
         setupUI()
+        setUpSwipeGesture()
+        setUpMoviesDataModel()
     }
     
-    @objc func handleSwipeUp(sender: UITapGestureRecognizer) {
-        movieDetailsCard?.bounceView()
-        movieCardBottomConstraint.constant = 50.0
+    //MARK:- Custom Methods
+    private func setUpMoviesDataModel() {
+        movieCardBottomConstraint.constant =  MovieDetailsConstant.movieCardBottomConstraint
+        guard let movie = viewModel?.movie else { return }
+        movieDetailsCard?.configureCell(model: MovieDetailsCardUIModel(votes: movie.popularity, movieTitle: movie.title, movieDesc: movie.overview, releaseDate: movie.release_date))
     }
     
     private func setupUI() {
         if let movieImage =  viewModel?.movie?.movieImage {
             let urlString = "\(Constants.imageBaseURL)\(movieImage)\(ApiKey.queryParamter)\(ApiKey.value)"
-            self.movieDetailImageView?.loadImage(urlString: urlString)
-            self.movieDetailImageView?.contentMode = .scaleAspectFill
+            movieDetailImageView?.loadImage(urlString: urlString)
+            movieDetailImageView?.contentMode = .scaleAspectFill
         }
     }
     
-    private func setupNavBar() {
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "close", style: .done, target: self, action: #selector(closeClicked))
+    private func setupNavBarTitle() {
+        title = MovieDetailsConstant.movieDetailsTitle
     }
     
-    @objc private func closeClicked(_ sender: AnyObject) {
-        navigationController?.popViewController(animated: true)
+    private func setUpSwipeGesture() {
+        let swipeUp = UISwipeGestureRecognizer(target: self,
+                                               action: #selector(handleSwipeUp(sender:)))
+        swipeUp.direction = .up
+        movieDetailsCard?.addGestureRecognizer(swipeUp)
     }
     
-    
+    @objc private func handleSwipeUp(sender: UITapGestureRecognizer) {
+        movieDetailsCard?.bounceView()
+        movieCardBottomConstraint.constant = MovieDetailsConstant.movieCardBottomConstraintSwipe
+    }
 }
