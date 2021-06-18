@@ -1,6 +1,8 @@
 import Foundation
 protocol MovieListServicesProtocol {
     func getMovieList(completion : @escaping([Movie]?,Error?) -> ())
+    func getSimilarMovieList(movieID: Int64,
+                             completion : @escaping([Movie]?,Error?) -> ())
 }
 
 class MovieListService {
@@ -9,6 +11,19 @@ extension MovieListService: MovieListServicesProtocol {
     
     func getMovieList(completion : @escaping([Movie]?,Error?) -> ()) {
         let finalURL = Constants.baseURL + MovieListApi.nowPlayingApi.rawValue + ApiKey.queryParamter + ApiKey.value
+        NetworkManager.shared.fetchDataForApi(finalURL) { data, error in
+            if let error = error {
+                completion(nil,error)
+            }
+            if let result = data as? Data{
+                completion(self.parseMovieData(result),nil)
+            }
+        }
+    }
+    
+    func getSimilarMovieList(movieID: Int64,
+                             completion : @escaping([Movie]?,Error?) -> ()) {
+        let finalURL = Constants.baseURL + "/\(movieID)" + Constants.similarMoviesURL + ApiKey.queryParamter + ApiKey.value
         NetworkManager.shared.fetchDataForApi(finalURL) { data, error in
             if let error = error {
                 completion(nil,error)

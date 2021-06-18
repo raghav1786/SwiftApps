@@ -6,6 +6,9 @@ class MovieDetailsCardCell: UIView {
     @IBOutlet weak private var votes: UILabel!
     @IBOutlet weak private var duration: UILabel!
     @IBOutlet weak private var descOverview: UILabel!
+    @IBOutlet weak private var similarMovieButton: UIButton!
+    
+    var similarMoviesClicked : (() -> ())?
     
     //MARK:- Custom Method
     func configureCell(model:MovieDetailsCardUIModel) {
@@ -13,5 +16,11 @@ class MovieDetailsCardCell: UIView {
         descOverview.text = model.movieDesc
         dateRelease.text = model.releaseDate
         votes.text = "\(String(describing: model.votes ?? 0.0))"
+        similarMovieButton.layer.cornerRadius = 10.0
+        similarMovieButton.setTitle(SimilarMoviesConstant.similarMoviesButtonTitle, for: .normal)
+    }
+    
+    @IBAction private func similarMoviesButtonClicked() {
+        similarMoviesClicked?()
     }
 }
