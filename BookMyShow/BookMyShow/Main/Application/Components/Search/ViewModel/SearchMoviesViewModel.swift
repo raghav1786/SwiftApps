@@ -1,12 +1,12 @@
-import Foundation
-import UIKit
-
 class SearchMoviesViewModel {
-    var moviesRepository = MoviesRepository()
+    // MARK: Stored Properties
+    private var searchValue:String = ""
+    
     var movieList : [Movie]?
     var movieListFromApi : [Movie]?
     var isSearchBarHighlited = false
     
+    // MARK: Computed Properties
     var items:[Movie] {
         // If searrchbar is highlighted return filtered movies ootherwise return recent search
         if !isSearchBarHighlited && RecentSearchDataManager.shared.getRecentSearch().count > 0 {
@@ -19,12 +19,6 @@ class SearchMoviesViewModel {
         
     }
     
-    private var searchValue:String = ""
-    func updateSearch(text:String,compeletion : @escaping(Bool) -> ()) {
-        searchValue = text
-        searchAlgo(compeletion : compeletion)
-    }
-    
     var headerHeight: Int {
         if !isSearchBarHighlited  {
             return 60
@@ -32,24 +26,12 @@ class SearchMoviesViewModel {
         return 0
     }
     
-    func getMovieList(compeletion : @escaping(Bool) -> ()) {
-        DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.moviesRepository.getMovieList() { movies,error in
-                DispatchQueue.main.async {
-                    if let movieList = movies {
-                        strongSelf.movieListFromApi = movieList
-                        strongSelf.movieList = movieList
-                        compeletion(true)
-                    } else {
-                        compeletion(false)
-                    }
-                }
-            }
-        }
+    func updateSearch(text:String,compeletion : @escaping(Bool) -> ()) {
+        searchValue = text
+        searchAlgo(compeletion : compeletion)
     }
     
-    //Search Algorithm
+    // MARK: Search Algorithms
     private func searchAlgo(compeletion : @escaping(Bool) -> ()) {
         let searchTextArray = searchValue.split(separator: " ")
         movieList = movieListFromApi?.filter({ (movie) -> Bool in

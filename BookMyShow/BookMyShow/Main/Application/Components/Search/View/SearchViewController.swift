@@ -1,51 +1,43 @@
-
 import UIKit
-
-class SearchViewController: UIViewController, UINavigationControllerDelegate{
-
+class SearchViewController: UIViewController {
+    
     //MARK:- Outlets
     @IBOutlet weak var movieListTableView: UITableView!
     
     //MARK:- Objects
-    let search = UISearchController(searchResultsController: nil)
+    private let search = UISearchController(searchResultsController: nil)
     var viewModel:SearchMoviesViewModel?
     
     //MARK:- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeVariables()
-        
+        registerCells()
+        initializeSearchController()
     }
-
+    
     //MARK:- Custom Methods
     func initializeVariables() {
-        title = "Search Movies"
-        initializeSearchController()
+        title = SearchConstants.searchTitle
         navigationController?.delegate = self
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    private func registerCells() {
         movieListTableView.register(UINib(nibName: Constants.movieTableCellIdentifier, bundle: Bundle.main), forCellReuseIdentifier: Constants.movieTableCellIdentifier)
         movieListTableView.register(UINib(nibName: Constants.movieSearchHeaderCellIdentifier, bundle: Bundle.main), forCellReuseIdentifier: Constants.movieSearchHeaderCellIdentifier)
-        callMovieListApi()
-       }
+    }
     
-    func initializeSearchController() {
-        navigationItem.hidesSearchBarWhenScrolling = false
-          search.searchResultsUpdater = self
-          search.obscuresBackgroundDuringPresentation = false
-          search.automaticallyShowsCancelButton = true
-          search.hidesNavigationBarDuringPresentation = false
-          search.searchBar.placeholder = "Type something here to search"
-          search.searchBar.delegate = self
+    private func initializeSearchController() {
+        search.searchResultsUpdater = self
+        search.obscuresBackgroundDuringPresentation = false
+        search.automaticallyShowsCancelButton = true
+        search.hidesNavigationBarDuringPresentation = false
+        search.searchBar.placeholder = SearchConstants.searchBarPlaceHolder
+        search.searchBar.delegate = self
         search.searchBar.searchTextField.backgroundColor = .white
         search.searchBar.searchTextField.textColor = .white
-          navigationItem.searchController = search
-      }
-    
-    func callMovieListApi() {
-        viewModel?.getMovieList { [weak self] (isSuccess) in
-            if isSuccess, let strongSelf = self {
-                strongSelf.movieListTableView.reloadData()
-            }
-        }
+        navigationItem.searchController = search
     }
     
     private func bookNowMovie(_ id : Int64) {
@@ -57,7 +49,7 @@ class SearchViewController: UIViewController, UINavigationControllerDelegate{
         let movieDetailVM = MovieDetailsViewModel(movie: movie)
         movieDetailsVC.viewModel = movieDetailVM
         navigationController?.pushViewController(movieDetailsVC,
-                                                      animated: true)
+                                                 animated: true)
         
     }
 }
@@ -86,7 +78,7 @@ extension SearchViewController : UISearchResultsUpdating,UISearchBarDelegate
     
 }
 
-
+//MARK:- UITableViewDelegate,UITableViewDataSource
 extension SearchViewController : UITableViewDelegate,UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -117,11 +109,15 @@ extension SearchViewController : UITableViewDelegate,UITableViewDataSource
         return 218
     }
     
-   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-     return SearchHeaderView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 60))
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return SearchHeaderView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 60))
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat(viewModel?.headerHeight ?? 0)
     }
+}
+
+extension SearchViewController: UINavigationControllerDelegate {
+    
 }
