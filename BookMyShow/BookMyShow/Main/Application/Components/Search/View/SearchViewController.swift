@@ -21,6 +21,7 @@ class SearchViewController: UIViewController {
         title = SearchConstants.searchTitle
         navigationController?.delegate = self
         navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: self, action: nil)
     }
     
     private func registerCells() {
