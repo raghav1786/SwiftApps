@@ -1,5 +1,5 @@
 import Foundation
 struct SimilarMoviesConstant {
-    static let similarMoviesTitle = "Similar Movies"
+    static let similarMoviesTitle = "Movies like "
     static let similarMoviesButtonTitle = "see similar movies"
 }
