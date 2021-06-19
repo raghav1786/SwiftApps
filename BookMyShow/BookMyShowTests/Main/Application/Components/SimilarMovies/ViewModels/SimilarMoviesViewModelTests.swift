@@ -6,7 +6,7 @@ class SimilarMoviesViewModelTests: XCTestCase {
     var viewModel: SimilarMoviesViewModel?
     override func setUpWithError() throws {
         viewModel = SimilarMoviesViewModel()
-        viewModel?.selectedMovieID = 337404
+        viewModel?.selectedMovie = MovieStub.getMovieData()
         viewModel?.movieList = [MovieStub.getMovieData()]
     }
     
