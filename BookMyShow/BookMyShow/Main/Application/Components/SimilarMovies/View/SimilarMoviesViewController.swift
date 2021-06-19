@@ -18,7 +18,8 @@ class SimilarMoviesViewController: UIViewController {
     
     //MARK:- Custom Methods
     func initializeVariables() {
-        title = SimilarMoviesConstant.similarMoviesTitle
+        title = SimilarMoviesConstant.similarMoviesTitle + "\(String(describing: viewModel?.selectedMovie?.title ?? ""))"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: self, action: nil)
     }
     
     private func registerCells() {

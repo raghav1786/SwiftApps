@@ -6,8 +6,10 @@ struct Constants {
     static let movieCellIdentifier = "MovieCollectionViewCell"
     static let movieTableCellIdentifier = "MovieTableCell"
     static let movieSearchHeaderCellIdentifier = "SearchHeaderView"
+    static let movieReviewTableViewCell = "MovieReviewTableViewCell"
     static let activityIndicatorString = "Loading Movies..."
     static let similarMoviesURL = "/similar"
+    static let moviesReviewsURL = "/reviews"
 }
 
 struct ApiKey {

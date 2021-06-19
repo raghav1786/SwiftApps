@@ -25,6 +25,10 @@ class MovieDetailsViewController: UIViewController {
         movieDetailsCard?.similarMoviesClicked = { [weak self] in
             self?.similarMoviesClicked()
         }
+        
+        movieDetailsCard?.movieReviewsClicked = { [weak self] in
+            self?.moviesReviewsClicked()
+        }
     }
     
     private func setupUI() {
@@ -37,6 +41,7 @@ class MovieDetailsViewController: UIViewController {
     
     private func setupNavBarTitle() {
         title = MovieDetailsConstant.movieDetailsTitle
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: self, action: nil)
     }
     
     private func setUpSwipeGesture() {
@@ -54,9 +59,18 @@ class MovieDetailsViewController: UIViewController {
     private func similarMoviesClicked() {
         guard let similarMoviesViewController = SimilarMoviesViewController.createInstance(storyboard: .main) as? SimilarMoviesViewController else{return}
         let similarMoviesViewModel = SimilarMoviesViewModel()
-        similarMoviesViewModel.selectedMovieID = viewModel?.movie?.id ?? 0
+        similarMoviesViewModel.selectedMovie = viewModel?.movie
         similarMoviesViewController.viewModel = similarMoviesViewModel
         navigationController?.pushViewController(similarMoviesViewController,
+                                                 animated: true)
+    }
+    
+    private func moviesReviewsClicked() {
+        guard let movieReviewViewController = MovieReviewViewController.createInstance(storyboard: .main) as? MovieReviewViewController else{return}
+        let movieReviewViewModel = MovieReviewViewModel()
+        movieReviewViewModel.movie = viewModel?.movie
+        movieReviewViewController.viewModel = movieReviewViewModel
+        navigationController?.pushViewController(movieReviewViewController,
                                                  animated: true)
     }
 }

@@ -34,6 +34,7 @@ class NowPlayingViewController: UIViewController {
         overrideUserInterfaceStyle = .light
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: NowPlayingConstants.searchImageTitle), style: .done, target: self, action: #selector(searchClicked))
         extendedLayoutIncludesOpaqueBars = true
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: self, action: nil)
     }
     
     //MARK:- Movie List Api
