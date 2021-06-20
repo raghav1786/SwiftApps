@@ -29,16 +29,19 @@
                                 <rect key="frame" x="110" y="0.0" width="492" height="217"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="l9g-gf-NPx">
-                                        <rect key="frame" x="0.0" y="0.0" width="492" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="492" height="80"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Justice League Dark: Apokolips War" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aaf-MU-Xi6">
-                                                <rect key="frame" x="0.0" y="0.0" width="467" height="30"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Justice League Dark: Apokolips War " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aaf-MU-Xi6">
+                                                <rect key="frame" x="0.0" y="0.0" width="467" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="quc-r7-egP"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPd-en-sGW" userLabel="deleteBtn">
-                                                <rect key="frame" x="472" y="0.0" width="20" height="30"/>
+                                                <rect key="frame" x="472" y="0.0" width="20" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="2rI-kC-K2d"/>
                                                 </constraints>
@@ -49,12 +52,9 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="O4q-Yw-dLd"/>
-                                        </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgc-CC-1zD">
-                                        <rect key="frame" x="0.0" y="30" width="492" height="187"/>
+                                        <rect key="frame" x="0.0" y="80" width="492" height="137"/>
                                         <string key="text">Earth is decimated after intergalactic tyrant Darkseid has devastated the Justice League in a poorly executed war by the DC Super Heroes. Now the remaining bastions of good – the Justice League, Teen Titans, Suicide Squad and assorted others – must regroup, strategize and take the war to Darkseid in order to save the planet and its surviving inhabitants.</string>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
