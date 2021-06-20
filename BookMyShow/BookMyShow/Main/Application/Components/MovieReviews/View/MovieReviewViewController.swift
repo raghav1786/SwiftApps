@@ -64,10 +64,10 @@ class MovieReviewViewController: UIViewController {
 extension MovieReviewViewController : UITableViewDelegate,UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let count = viewModel?.reviews?.count {
+        if let count = viewModel?.reviews?.count,count != 0 {
             return count + 1
         }
-        return 1
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -102,5 +102,21 @@ extension MovieReviewViewController : UITableViewDelegate,UITableViewDataSource
         } else {
             return UITableView.automaticDimension
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if viewModel?.reviews?.count == 0 {
+            let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 70))
+            let label = UILabel()
+            label.frame = CGRect.init(x: headerView.frame.midX - 50, y: 5, width: headerView.frame.width, height: headerView.frame.height)
+            label.text = "No Reviews Yet"
+            label.font = .systemFont(ofSize: 16.0, weight: .bold)
+            label.textColor = .black
+            
+            headerView.addSubview(label)
+            
+            return headerView
+        }
+        return UIView()
     }
 }
