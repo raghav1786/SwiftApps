@@ -86,4 +86,20 @@ extension SimilarMoviesViewController : UITableViewDelegate,UITableViewDataSourc
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 218
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if viewModel?.movieList?.count == 0 {
+            let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 70))
+            let label = UILabel()
+            label.frame = CGRect.init(x: headerView.frame.midX - 50, y: 5, width: headerView.frame.width, height: headerView.frame.height)
+            label.text = "No Similar Movies"
+            label.font = .systemFont(ofSize: 16.0, weight: .bold)
+            label.textColor = .black
+            
+            headerView.addSubview(label)
+            
+            return headerView
+        }
+        return UIView()
+    }
 }
