@@ -5,16 +5,14 @@ It also gives user an option to search movie names and book movie he likes.
 
 ## Key Features
 
-https://user-images.githubusercontent.com/53406407/122641029-4911e400-d120-11eb-8725-5ecd2dd2f689.mov
+https://user-images.githubusercontent.com/53406407/122665814-1cfd6e00-d1c7-11eb-85b3-08665f2aabf2.mov
 
 
 
 ### Now Showing Screen
 user can see list of movies
 - used can click on book now to go to details screen
-
-<img width="200" alt="2" src="https://user-images.githubusercontent.com/53406407/122640803-f71c8e80-d11e-11eb-9cad-daeebc1892c1.png">
-
+<img width="200" alt="Screenshot 2021-06-20 at 12 44 18" src="https://user-images.githubusercontent.com/53406407/122665594-bd529300-d1c5-11eb-9691-742180630e57.png">
 
 ### Search Screen
 user can search movie
