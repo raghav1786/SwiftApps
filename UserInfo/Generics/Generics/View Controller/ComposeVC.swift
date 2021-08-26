@@ -22,7 +22,7 @@ class ComposeVC: UIViewController {
     var refUsers : DatabaseReference?
     var refUserDetails : DatabaseReference?
     fileprivate var viewModel : ComposeVM?
-    var count : Int =  3
+    var uuid = UUID()
     
     private func assertDependencies() {
         assert(viewModel != nil)
@@ -34,7 +34,6 @@ class ComposeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        count = (self.viewModel?.count ?? 4) + 1
         ref = Database.database().reference()
         refUsers =  ref?.child("users")
         refUserDetails = ref?.child("userDetails")
@@ -55,12 +54,12 @@ class ComposeVC: UIViewController {
     }
     
     private func writeUserDetailToDatabase() {
-        refUserDetails?.child(String(count)).child("email").setValue(emailtxtFeild.text)
-        refUserDetails?.child(String(count)).child("contact").setValue(Int64(contacttxtFeild?.text ?? ""))
-        refUserDetails?.child(String(count)).child("address").setValue(addresstxtFeild.text)
+        refUserDetails?.child(uuid.uuidString).child("email").setValue(emailtxtFeild.text)
+        refUserDetails?.child(uuid.uuidString).child("contact").setValue(Int64(contacttxtFeild?.text ?? ""))
+        refUserDetails?.child(uuid.uuidString).child("address").setValue(addresstxtFeild.text)
     }
     
     private func writeUserToDatabase() {
-        refUsers?.child(String(count)).child("name").setValue(nametxtFeild.text)
+        refUsers?.child(uuid.uuidString).child("name").setValue(nametxtFeild.text)
     }
 }
