@@ -6,6 +6,7 @@ creating a real time database in Firebase to show case a list of users along wit
 
 
 ### Firebase Database Console
-<img width="795" alt="Screenshot 2021-08-30 at 18 07 53" src="https://user-images.githubusercontent.com/53406407/131340085-318be568-3baf-4f2e-84e2-7f52f66a065b.png">
+<img width="1057" alt="Screenshot 2021-08-30 at 23 45 33" src="https://user-images.githubusercontent.com/53406407/131385454-fffd328c-25e3-4f32-a3b3-2c2af43175f8.png">
+
 
 
