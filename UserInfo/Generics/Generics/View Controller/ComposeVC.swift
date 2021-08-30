@@ -6,10 +6,8 @@
 //  Copyright © 2020 RAGHAV SHARMA. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import ReusableUI
-import FirebaseDatabase
 
 class ComposeVC: UIViewController {
     @IBOutlet weak var nametxtFeild: UITextField!
@@ -18,9 +16,6 @@ class ComposeVC: UIViewController {
     @IBOutlet weak var addresstxtFeild : UITextField!
     //properties
     typealias DependencyType = ComposeVM
-    var ref : DatabaseReference?
-    var refUsers : DatabaseReference?
-    var refUserDetails : DatabaseReference?
     fileprivate var viewModel : ComposeVM?
     var uuid = UUID()
     
@@ -31,35 +26,37 @@ class ComposeVC: UIViewController {
     internal func inject(dependency : DependencyType) {
         viewModel = dependency
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = Database.database().reference()
-        refUsers =  ref?.child("users")
-        refUserDetails = ref?.child("userDetails")
+        viewModel?.setupFirebaseReferences()
         // Do any additional setup after loading the view.
     }
     
     @IBAction func addUser(_ sender: Any) {
         // Create the user and record it
-        writeUserToDatabase()
+        addUserToDB()
         // Create the userDetail and record it
-        writeUserDetailToDatabase()
+        addUserDetailsToDB()
         navigationController?.popViewController(animated: true)
     }
     
     @IBAction func cancelRequest(_ sender: Any) {
-       navigationController?.popViewController(animated: true)
-       
+        navigationController?.popViewController(animated: true)
+        
+    }
+}
+
+//MARK: Writing to Database
+extension ComposeVC {
+    private func addUserToDB() {
+        viewModel?.addUserToDB(userID: uuid.uuidString, name: nametxtFeild.text ?? "")
     }
     
-    private func writeUserDetailToDatabase() {
-        refUserDetails?.child(uuid.uuidString).child("email").setValue(emailtxtFeild.text)
-        refUserDetails?.child(uuid.uuidString).child("contact").setValue(Int64(contacttxtFeild?.text ?? ""))
-        refUserDetails?.child(uuid.uuidString).child("address").setValue(addresstxtFeild.text)
-    }
-    
-    private func writeUserToDatabase() {
-        refUsers?.child(uuid.uuidString).child("name").setValue(nametxtFeild.text)
+    private func addUserDetailsToDB() {
+        viewModel?.addUserDetailsToDB(userID: uuid.uuidString,
+                                      email: emailtxtFeild.text ?? "",
+                                      contact: contacttxtFeild.text ?? "",
+                                      address: addresstxtFeild.text ?? "")
     }
 }

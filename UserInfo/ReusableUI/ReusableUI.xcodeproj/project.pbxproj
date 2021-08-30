@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E20782623B26E51000F11EC /* TableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E20782523B26E51000F11EC /* TableViewManager.swift */; };
+		0E43A3F726DD019000606D63 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E43A3F626DD019000606D63 /* ProgressIndicator.swift */; };
 		0E52D99B23D4445100E115B3 /* UIViewController+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E52D99A23D4445100E115B3 /* UIViewController+Extended.swift */; };
 		0E52D99F23D4457A00E115B3 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E52D99E23D4457A00E115B3 /* Utilities.swift */; };
 		0E52D9A123D4D22000E115B3 /* UIView+Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E52D9A023D4D22000E115B3 /* UIView+Extended.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		0E20782523B26E51000F11EC /* TableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewManager.swift; sourceTree = "<group>"; };
+		0E43A3F626DD019000606D63 /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
 		0E52D99A23D4445100E115B3 /* UIViewController+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extended.swift"; sourceTree = "<group>"; };
 		0E52D99E23D4457A00E115B3 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		0E52D9A023D4D22000E115B3 /* UIView+Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extended.swift"; sourceTree = "<group>"; };
@@ -66,6 +68,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E43A3F526DD018000606D63 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0E43A3F626DD019000606D63 /* ProgressIndicator.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		0E7E318F23AFCBDF00B37C91 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +97,7 @@
 		0E7E319B23AFCBDF00B37C91 /* ReusableUI */ = {
 			isa = PBXGroup;
 			children = (
+				0E43A3F526DD018000606D63 /* Utilities */,
 				0ED3E38623C4FFB800795E5E /* Extensions */,
 				0E7E31B323AFCBE800B37C91 /* ReusableCells */,
 				0E7E319C23AFCBDF00B37C91 /* ReusableUI.h */,
@@ -249,6 +260,7 @@
 				0E52D99F23D4457A00E115B3 /* Utilities.swift in Sources */,
 				0E52D99B23D4445100E115B3 /* UIViewController+Extended.swift in Sources */,
 				0E7E31B823AFCC3300B37C91 /* UserInfoTableViewCell.swift in Sources */,
+				0E43A3F726DD019000606D63 /* ProgressIndicator.swift in Sources */,
 				0E20782623B26E51000F11EC /* TableViewManager.swift in Sources */,
 				0ED3E38823C5003A00795E5E /* UIScrollView+Extended.swift in Sources */,
 				0ED3E38523C4FC1D00795E5E /* Constants.swift in Sources */,
