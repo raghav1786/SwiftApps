@@ -11,14 +11,12 @@ import UIKit
 
 //added structure for adding Details of user
 public struct UserDescription {
-    let id : Int?
     let name : String?
     let phone : Int64?
     let address : String?
     let email : String?
     
-    public init(id:Int?,name: String?,phone: Int64?,address: String?,email:String?) {
-        self.id = id
+    public init(name: String?,phone: Int64?,address: String?,email:String?) {
         self.name = name
         self.phone = phone
         self.address = address
