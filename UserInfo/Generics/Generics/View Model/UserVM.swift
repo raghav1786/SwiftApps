@@ -14,11 +14,7 @@ class UserVM  {
     
     //properties
     let dataSource : DataSource = DataSource()
-    var userDetails = [UserDetails]()
     var users = [Users]()
-    var ref : DatabaseReference?
-    var refUsers : DatabaseReference?
-    var refUserDetails : DatabaseReference?
     
     //configure data into ViewModel for custom Cell used in tableView
     func configureData() {
@@ -28,9 +24,8 @@ class UserVM  {
         // navigating through each user and fetching its details
         for user in users   {
             //Getting user Details for the user
-            let userDetail = userDetails[user.key]
             //passing detail to UserDescription Struct
-            let userInfoCell = UserDescription(id: user.key, name: user.name, phone: userDetail.contact, address: userDetail.address, email: userDetail.email)
+            let userInfoCell = UserDescription( name: user.name, phone: user.contact , address: user.address, email: user.email)
             
             //adding details of user to UserInfoTableViewCellModel
             let userInfoTableViewCell = UserInfoTableViewCellModel(referenceContent: userInfoCell)
@@ -45,12 +40,6 @@ class UserVM  {
 
 // MARK: Database Setup
 extension UserVM {
-    func setupFirebaseReferences() {
-        //set the firebase Reference
-        ref = Database.database().reference()
-        refUsers =  ref?.child("users")
-        refUserDetails = ref?.child("userDetails")
-    }
 }
 
 
@@ -58,33 +47,17 @@ extension UserVM {
 extension UserVM {
     func getUsers(completionAction: @escaping (Bool)->()) {
         //Retrieve the users and listen for changes
-        refUsers?.observe(.value,with: { snapshot in
-            var users = [Users]()
+        FirebaseDBReferences().refUsers.observe(.value,with: { snapshot in
             for usersSnapshot in snapshot.children {
-                let key = (usersSnapshot as AnyObject).key as String
                 let dataSnapshot = usersSnapshot as! DataSnapshot
-                let user = Users(snapshot: dataSnapshot,
-                                 keyValue: Int(key) ?? 0)
-                users.append(user)
+                guard let usersObject = dataSnapshot.value else { return }
+                if let data = try?  JSONSerialization.data(withJSONObject: usersObject, options: []) {
+                    guard let user = try? JSONDecoder().decode(Users.self, from: data) else { return }
+                    self.users.append(user)
+                }
             }
-            self.users = users
             
             //fetching userDetails from firebase
-            completionAction(true)
-        })
-    }
-    
-    func getUserDetails(completionAction: @escaping (Bool)->()) {
-        //Retrieve the userDetails and listen for changes
-        refUserDetails?.observe(.value,with: { snapshot in
-            var userDetails = [UserDetails]()
-            for userDetailsSnapshot in snapshot.children {
-                let key = (userDetailsSnapshot as AnyObject).key as String
-                let userDetail = UserDetails(snapshot: userDetailsSnapshot as! DataSnapshot,keyValue: Int(key) ?? 0)
-                userDetails.append(userDetail)
-            }
-            self.userDetails = userDetails
-            //reload table after getting data
             completionAction(true)
         })
     }

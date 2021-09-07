@@ -8,16 +8,10 @@
 
 import FirebaseDatabase
 
-struct Users {
-    let name: String
-    let key : Int
-    
-    // Init for reading from Database snapshot
-    init(snapshot: DataSnapshot,keyValue:Int) {
-        let snapshotValue = snapshot.value as! [String: AnyObject]
-        name = snapshotValue["name"] as? String ?? "N/A"
-        key = keyValue
-    }
+struct Users: Codable {
+let  name: String
+let address: String
+let contact: Int64
+let email: String
+
 }
-
-

@@ -29,15 +29,12 @@ class ComposeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel?.setupFirebaseReferences()
         // Do any additional setup after loading the view.
     }
     
     @IBAction func addUser(_ sender: Any) {
         // Create the user and record it
         addUserToDB()
-        // Create the userDetail and record it
-        addUserDetailsToDB()
         navigationController?.popViewController(animated: true)
     }
     
@@ -50,13 +47,8 @@ class ComposeVC: UIViewController {
 //MARK: Writing to Database
 extension ComposeVC {
     private func addUserToDB() {
-        viewModel?.addUserToDB(userID: uuid.uuidString, name: nametxtFeild.text ?? "")
-    }
-    
-    private func addUserDetailsToDB() {
-        viewModel?.addUserDetailsToDB(userID: uuid.uuidString,
-                                      email: emailtxtFeild.text ?? "",
-                                      contact: contacttxtFeild.text ?? "",
-                                      address: addresstxtFeild.text ?? "")
+        viewModel?.addUserToDB(name: nametxtFeild.text ?? "",email: emailtxtFeild.text ?? "",
+                               contact: contacttxtFeild.text ?? "",
+                               address: addresstxtFeild.text ?? "")
     }
 }
