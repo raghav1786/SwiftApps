@@ -22,20 +22,12 @@ class UserVC: UIViewController,UITableViewDelegate {
         registerCustomCells()
         reloadTableViews()
         showIndicator(in: self.view)
-        viewModel?.setupFirebaseReferences()
         
         //fetchingData from realtime Database
         viewModel?.getUsers() { isSuccess in
             if isSuccess {
                 self.reloadTableViews()
                 self.hideIndicator(from: self.view)
-            }
-        }
-        
-        viewModel?.getUserDetails() { isSuccess in
-            if isSuccess {
-                self.reloadTableViews()
-                self.hideIndicator(from: self.view, removeFromSuperView: true)
             }
         }
         
