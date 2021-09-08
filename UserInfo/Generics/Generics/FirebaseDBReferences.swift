@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseFirestore
 
 final class FirebaseDBReferences {
     var ref : DatabaseReference {
@@ -17,5 +18,8 @@ final class FirebaseDBReferences {
     }
     var refUsers : DatabaseReference {
         ref.child("users")
+    }
+    var fireStoreRef: Firestore {
+        return Firestore.firestore()
     }
 }
