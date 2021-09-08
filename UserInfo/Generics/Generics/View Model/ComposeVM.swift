@@ -22,4 +22,19 @@ extension ComposeVM {
         id.child("address").setValue(address)
         id.child("name").setValue(name)
     }
+    
+    func addUserToFireStoreDB(name: String,email: String, contact: String, address: String) {
+        FirebaseDBReferences().fireStoreRef.collection("Users").addDocument(data: [
+            "email": email,
+            "name": name,
+            "contact": Int64(contact) ?? 0,
+            "address": address
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added")
+            }
+        }
+    }
 }

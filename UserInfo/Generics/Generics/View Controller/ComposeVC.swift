@@ -34,7 +34,7 @@ class ComposeVC: UIViewController {
     
     @IBAction func addUser(_ sender: Any) {
         // Create the user and record it
-        addUserToDB()
+        addUserToFireStoreDB()
         navigationController?.popViewController(animated: true)
     }
     
@@ -50,5 +50,9 @@ extension ComposeVC {
         viewModel?.addUserToDB(name: nametxtFeild.text ?? "",email: emailtxtFeild.text ?? "",
                                contact: contacttxtFeild.text ?? "",
                                address: addresstxtFeild.text ?? "")
+    }
+    
+    private func addUserToFireStoreDB() {
+        viewModel?.addUserToFireStoreDB(name: nametxtFeild.text ?? "", email: emailtxtFeild.text ?? "", contact: contacttxtFeild.text ?? "", address: addresstxtFeild.text ?? "")
     }
 }
