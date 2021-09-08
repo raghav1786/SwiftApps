@@ -17,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        // Enabling Offline Persistance for Real Time Firebase Database
         Database.database().isPersistenceEnabled = true
+        // For Cloud FireStore Database . Persistance is Enabled by default.
         return true
     }
 
