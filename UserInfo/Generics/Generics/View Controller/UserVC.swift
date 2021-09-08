@@ -31,6 +31,13 @@ class UserVC: UIViewController,UITableViewDelegate {
             }
         }
         
+        viewModel?.getUsersFromFireStore { isSuccess in
+            if isSuccess {
+                self.reloadTableViews()
+                self.hideIndicator(from: self.view)
+            }
+        }
+        
     }
     
     @IBAction func addUsers(_ sender: Any) {
