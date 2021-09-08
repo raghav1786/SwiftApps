@@ -61,4 +61,21 @@ extension UserVM {
             completionAction(true)
         })
     }
+    
+    func getUsersFromFireStore(completionAction: @escaping (Bool)->()) {
+        FirebaseDBReferences().fireStoreRef.collection("Users").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completionAction(false)
+            } else {
+                for document in querySnapshot!.documents {
+                    if let data = try?  JSONSerialization.data(withJSONObject: document.data(), options: []) {
+                        guard let user = try? JSONDecoder().decode(Users.self, from: data) else { return }
+                        self.users.append(user)
+                    }
+                }
+                completionAction(true)
+            }
+        }
+    }
 }
