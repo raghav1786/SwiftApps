@@ -10,10 +10,10 @@ target 'Generics' do
   # add the Firebase pod for Google Analytics
   
   pod 'Firebase/Database'
-  pod 'FirebaseCore'
+  #pod 'FirebaseCore'
   # add pods for any other desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
-  pod 'FirebaseFirestore'
+  pod 'FirebaseFirestoreSwift'
 
   target 'GenericsTests' do
     inherit! :search_paths
