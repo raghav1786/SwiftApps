@@ -9,11 +9,13 @@
 import Foundation
 import ReusableUI
 import FirebaseDatabase
+import FirebaseFirestoreSwift
 
 class UserVM  {
     
     //properties
     let dataSource : DataSource = DataSource()
+    var fireBaseStore: some FirebaseDataStore = FirebaseRealTimeDatabase()
     var users = [Users]()
     
     //configure data into ViewModel for custom Cell used in tableView
@@ -47,35 +49,42 @@ extension UserVM {
 extension UserVM {
     func getUsers(completionAction: @escaping (Bool)->()) {
         //Retrieve the users and listen for changes
-        FirebaseDBReferences().refUsers.observe(.value,with: { snapshot in
-            for usersSnapshot in snapshot.children {
-                let dataSnapshot = usersSnapshot as! DataSnapshot
-                guard let usersObject = dataSnapshot.value else { return }
-                if let data = try?  JSONSerialization.data(withJSONObject: usersObject, options: []) {
-                    guard let user = try? JSONDecoder().decode(Users.self, from: data) else { return }
-                    self.users.append(user)
-                }
-            }
-            
-            //fetching userDetails from firebase
+        fireBaseStore.fetch(entity: Users.self) {[weak self] result in
+            guard let data = try? result.get() else { return }
+            self?.users = []
+            self?.users = data
             completionAction(true)
-        })
+        }
+    }
+    
+    func deleteUsers(completionAction: @escaping (Bool)->()) {
+        fireBaseStore.delete(entity: Users.self) { result in
+            if let isSuccess = try? result.get() {
+                completionAction(isSuccess)
+            }
+        }
+    }
+    
+    func updateUser(completionAction: @escaping (Bool)->()) {
+        fireBaseStore.update(data: Users(name: "suri", address: "jalandhar", contact: 45678987654, email: "raghav@yml.com"), key: "-Mj9L6tPIYvXyaBzIDP-") { result in
+            if let isSuccess = try? result.get() {
+                completionAction(isSuccess)
+            }
+        }
     }
     
     func getUsersFromFireStore(completionAction: @escaping (Bool)->()) {
-        FirebaseDBReferences().fireStoreRef.collection("Users").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-                completionAction(false)
-            } else {
-                for document in querySnapshot!.documents {
-                    if let data = try?  JSONSerialization.data(withJSONObject: document.data(), options: []) {
-                        guard let user = try? JSONDecoder().decode(Users.self, from: data) else { return }
-                        self.users.append(user)
-                    }
-                }
-                completionAction(true)
-            }
-        }
+        //        CloudFirestoreDatabase().collection("Users").getDocuments() { (querySnapshot, err) in
+        //            if let err = err {
+        //                print("Error getting documents: \(err)")
+        //                completionAction(false)
+        //            } else {
+        //                for document in querySnapshot!.documents {
+        //                    guard let user = try? document.data(as: Users.self) else { return }
+        //                    self.users.append(user)
+        //                }
+        //                completionAction(true)
+        //            }
+        //        }
     }
 }
