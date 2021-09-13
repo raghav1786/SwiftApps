@@ -34,7 +34,7 @@ class ComposeVC: UIViewController {
     
     @IBAction func addUser(_ sender: Any) {
         // Create the user and record it
-        addUserToFireStoreDB()
+        addUserToDB()
         navigationController?.popViewController(animated: true)
     }
     

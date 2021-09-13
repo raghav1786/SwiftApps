@@ -26,17 +26,33 @@ class UserVC: UIViewController,UITableViewDelegate {
         //fetchingData from realtime Database
         viewModel?.getUsers() { isSuccess in
             if isSuccess {
-                self.reloadTableViews()
-                self.hideIndicator(from: self.view)
+                DispatchQueue.main.async {
+                    self.reloadTableViews()
+                    self.hideIndicator(from: self.view)
+                }
             }
         }
         
-        viewModel?.getUsersFromFireStore { isSuccess in
-            if isSuccess {
-                self.reloadTableViews()
-                self.hideIndicator(from: self.view)
-            }
-        }
+        //MARK: Some unused CRUD operation methods.
+        //        viewModel?.getUsersFromFireStore { isSuccess in
+        //            if isSuccess {
+        //                self.reloadTableViews()
+        //                self.hideIndicator(from: self.view)
+        //            }
+        //        }
+        
+        
+        //        viewModel?.deleteUsers() { isSuccess in
+        //            if isSuccess {
+        //                self.hideIndicator(from: self.view)
+        //            }
+        //        }
+        
+        //        viewModel?.updateUser() { isSuccess in
+        //            if isSuccess {
+        //                self.hideIndicator(from: self.view)
+        //            }
+        //        }
         
     }
     

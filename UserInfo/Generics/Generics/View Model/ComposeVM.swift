@@ -10,31 +10,30 @@ import Foundation
 import FirebaseDatabase
 
 class ComposeVM {
+    var fireBaseStore: some FirebaseDataStore =  FirebaseRealTimeDatabase()
 }
 
 // MARK: Writing to Database
 extension ComposeVM {
     
     func addUserToDB(name: String,email: String, contact: String, address: String) {
-        let id = FirebaseDBReferences().refUsers.childByAutoId()
-        id.child("email").setValue(email)
-        id.child("contact").setValue(Int64(contact))
-        id.child("address").setValue(address)
-        id.child("name").setValue(name)
+        fireBaseStore.add(data: Users(name: name, address: address, contact: Int64(contact) ?? 0, email: email)) { result in
+            
+        }
     }
     
     func addUserToFireStoreDB(name: String,email: String, contact: String, address: String) {
-        FirebaseDBReferences().fireStoreRef.collection("Users").addDocument(data: [
-            "email": email,
-            "name": name,
-            "contact": Int64(contact) ?? 0,
-            "address": address
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added")
-            }
-        }
+//        fireBaseStore?.fireStoreRef.collection("Users").addDocument(data: [
+//            "email": email,
+//            "name": name,
+//            "contact": Int64(contact) ?? 0,
+//            "address": address
+//        ]) { err in
+//            if let err = err {
+//                print("Error adding document: \(err)")
+//            } else {
+//                print("Document added")
+//            }
+//        }
     }
 }
