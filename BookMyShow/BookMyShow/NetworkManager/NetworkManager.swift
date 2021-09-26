@@ -1,19 +1,27 @@
 import Foundation
+import Combine
+
 class NetworkManager {
+    
     static let shared = NetworkManager()
     private init() {}
     
-    func fetchDataForApi(_ urlString: String, completion : @escaping(Any?,Error?) -> ()) {
-        let session = URLSession(configuration: .default)
-        guard let url = URL(string: urlString) else { return completion(nil,nil) }
-        let task = session.dataTask(with: url) { (data,response,error) in
-            if let error = error {
-                completion(nil,error)
+    func fetchDataForApi(_ urlString: String) -> Future<Any?,Error> {
+        Future { promise in
+            let session = URLSession(configuration: .default)
+            guard let url = URL(string: urlString) else {
+                promise(.failure(NetworkError.invlaidURL))
+                return
             }
-            if let safeData = data {
-                completion(safeData, nil)
+            let task = session.dataTask(with: url) { (data,response,error) in
+                if let error = error {
+                    promise(.failure(error))
+                }
+                if let safeData = data {
+                    promise(.success(safeData))
+                }
             }
+            task.resume()
         }
-        task.resume()
     }
 }

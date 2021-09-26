@@ -1,5 +1,7 @@
 import Foundation
 import UIKit
+import Combine
+
 class MovieReviewViewController: UIViewController {
     
     //MARK:- Outlets
@@ -7,6 +9,7 @@ class MovieReviewViewController: UIViewController {
     
     //MARK:- Objects
     var viewModel:MovieReviewViewModel?
+    var token =  [AnyCancellable]()
     
     //MARK:- LifeCycle
     override func viewDidLoad() {
@@ -32,21 +35,23 @@ class MovieReviewViewController: UIViewController {
     //MARK:- Movie Reviews Api
     private func callMovieReviewApi() {
         ActivityIndicator.shared.addActivityIndicator(self.view)
-        self.viewModel?.getMovieReviews() { [weak self] (success) in
-            guard let strongSelf = self else { return }
-            if success {
-                strongSelf.movieReviewListTableView.reloadData()
-            } else {
-                let alert = UIAlertController(title: ApiKey.apiErrorTitle, message: ApiKey.apiErrorMessage, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: ApiKey.retryBtn, style: UIAlertAction.Style.default, handler: { _ in
-                    strongSelf.callMovieReviewApi()
-                }))
-                alert.addAction(UIAlertAction(title: ApiKey.okayBtnTitle, style: UIAlertAction.Style.default, handler: nil))
-                strongSelf.present(alert, animated: true, completion: nil)
+        viewModel?.getMovieReviews().sink {[weak self] isSuccess in
+            DispatchQueue.main.async {[weak self] in
+                guard let strongSelf = self else { return }
+                if isSuccess {
+                    strongSelf.movieReviewListTableView.reloadData()
+                } else {
+                    let alert = UIAlertController(title: ApiKey.apiErrorTitle, message: ApiKey.apiErrorMessage, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: ApiKey.retryBtn, style: UIAlertAction.Style.default, handler: { _ in
+                        strongSelf.callMovieReviewApi()
+                    }))
+                    alert.addAction(UIAlertAction(title: ApiKey.okayBtnTitle, style: UIAlertAction.Style.default, handler: nil))
+                    strongSelf.present(alert, animated: true, completion: nil)
+                }
+                ActivityIndicator.shared.stopAnimation()
+                ActivityIndicator.shared.removeActivityIndicator()
             }
-            ActivityIndicator.shared.stopAnimation()
-            ActivityIndicator.shared.removeActivityIndicator()
-        }
+        }.store(in: &token)
     }
     
     private func bookNowMovie() {

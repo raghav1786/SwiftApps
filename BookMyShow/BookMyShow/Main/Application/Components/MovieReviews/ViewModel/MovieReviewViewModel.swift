@@ -1,29 +1,36 @@
 import Foundation
+import Combine
+
 class MovieReviewViewModel {
     private var movieReviewsRepository = MovieReviewsRepository()
     var movie: Movie?
     var reviews : [MovieReview]?
+    var token = [AnyCancellable]()
     
-    func getMovieReviews(completion : @escaping(Bool) -> ()) {
-        DispatchQueue.global().async { [weak self] in
+    func getMovieReviews() -> Future<Bool,Never> {
+        return Future {[weak self] promise in
             guard let strongSelf = self else {
-                completion(false)
+                promise(.success(false))
                 return
             }
             guard let movieId = strongSelf.movie?.id else {
-                completion(false)
+                promise(.success(false))
                 return
             }
-            strongSelf.movieReviewsRepository.getMovieReviewList(movieID: movieId) { movies,error in
-                DispatchQueue.main.async {
-                    if let movieList = movies {
-                        strongSelf.reviews = movieList
-                        completion(true)
-                    } else {
-                        completion(false)
-                    }
+            strongSelf.movieReviewsRepository.getMovieReviewList(movieID: movieId).sink { completion in
+                switch completion {
+                case .finished: ()
+                case .failure(_):
+                    promise(.success(false))
+                }
+            } receiveValue: { reviews in
+                if let movieListReviews = reviews {
+                    strongSelf.reviews = movieListReviews
+                    promise(.success(true))
                 }
             }
+            .store(in: &strongSelf.token)
+            
         }
     }
 }

@@ -1,12 +1,12 @@
+import Combine
+
 class MoviesRepository {
     let movieListService = MovieListService()
-    func getMovieList(completion : @escaping([Movie]?,Error?) -> ()) {
-        movieListService.getMovieList(completion: completion)
+    func getMovieList() -> Future<[Movie]?,Error> {
+        movieListService.getMovieList()
     }
     
-    func getSimilarMovieList(movieID: Int64,
-                             completion : @escaping([Movie]?,Error?) -> ()) {
-        movieListService.getSimilarMovieList(movieID: movieID,
-                                             completion: completion)
+    func getSimilarMovieList(movieID: Int64) -> Future<[Movie]?,Error> {
+        movieListService.getSimilarMovieList(movieID: movieID)
     }
 }

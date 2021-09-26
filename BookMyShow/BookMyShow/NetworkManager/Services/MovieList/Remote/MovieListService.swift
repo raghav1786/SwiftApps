@@ -1,36 +1,47 @@
 import Foundation
+import Combine
+
 protocol MovieListServicesProtocol {
-    func getMovieList(completion : @escaping([Movie]?,Error?) -> ())
-    func getSimilarMovieList(movieID: Int64,
-                             completion : @escaping([Movie]?,Error?) -> ())
+    func getMovieList() -> Future<[Movie]?,Error>
+    func getSimilarMovieList(movieID: Int64) -> Future<[Movie]?,Error>
 }
 
 class MovieListService {
+    var token = [AnyCancellable]()
 }
 extension MovieListService: MovieListServicesProtocol {
     
-    func getMovieList(completion : @escaping([Movie]?,Error?) -> ()) {
-        let finalURL = Constants.baseURL + MovieListApi.nowPlayingApi.rawValue + ApiKey.queryParamter + ApiKey.value
-        NetworkManager.shared.fetchDataForApi(finalURL) { data, error in
-            if let error = error {
-                completion(nil,error)
-            }
-            if let result = data as? Data{
-                completion(self.parseMovieData(result),nil)
-            }
+    func getMovieList() -> Future<[Movie]?,Error>  {
+        return Future { promise in
+            let finalURL = Constants.baseURL + MovieListApi.nowPlayingApi.rawValue + ApiKey.queryParamter + ApiKey.value
+            NetworkManager.shared.fetchDataForApi(finalURL).sink { completion in
+                switch completion {
+                case .failure(let error):
+                    promise(.failure(error))
+                case .finished: ()
+                }
+            } receiveValue: { data in
+                if let result = data as? Data{
+                    promise(.success(self.parseMovieData(result)))
+                }
+            }.store(in: &self.token)
         }
     }
     
-    func getSimilarMovieList(movieID: Int64,
-                             completion : @escaping([Movie]?,Error?) -> ()) {
-        let finalURL = Constants.baseURL + "/\(movieID)" + Constants.similarMoviesURL + ApiKey.queryParamter + ApiKey.value
-        NetworkManager.shared.fetchDataForApi(finalURL) { data, error in
-            if let error = error {
-                completion(nil,error)
-            }
-            if let result = data as? Data{
-                completion(self.parseMovieData(result),nil)
-            }
+    func getSimilarMovieList(movieID: Int64) -> Future<[Movie]?,Error> {
+        return Future { promise in
+            let finalURL = Constants.baseURL + "/\(movieID)" + Constants.similarMoviesURL + ApiKey.queryParamter + ApiKey.value
+            NetworkManager.shared.fetchDataForApi(finalURL).sink { completion in
+                switch completion {
+                case .failure(let error):
+                    promise(.failure(error))
+                case .finished: ()
+                }
+            } receiveValue: { data in
+                if let result = data as? Data{
+                    promise(.success(self.parseMovieData(result)))
+                }
+            }.store(in: &self.token)
         }
     }
     
