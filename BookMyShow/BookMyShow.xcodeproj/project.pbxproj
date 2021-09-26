@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E03803E2700537100C91434 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E03803D2700537100C91434 /* NetworkError.swift */; };
 		0E4B3AEA267C7A6E000716FD /* SearchConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4B3AE9267C7A6E000716FD /* SearchConstants.swift */; };
 		0E4B3AF5267C8552000716FD /* MovieDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4B3AF4267C8552000716FD /* MovieDetailsViewModelTests.swift */; };
 		0E4B3AFD267C85B6000716FD /* NowPlayingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4B3AFC267C85B6000716FD /* NowPlayingViewModelTests.swift */; };
@@ -91,6 +92,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E03803D2700537100C91434 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		0E4B3AE9267C7A6E000716FD /* SearchConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConstants.swift; sourceTree = "<group>"; };
 		0E4B3AF4267C8552000716FD /* MovieDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		0E4B3AFC267C85B6000716FD /* NowPlayingViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewModelTests.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 		0E66A9AD267A7A0200CDAB92 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
+				0E03803D2700537100C91434 /* NetworkError.swift */,
 				0E66A9AE267A7A0200CDAB92 /* NetworkManager.swift */,
 				0E66A9AF267A7A0200CDAB92 /* Services */,
 			);
@@ -985,6 +988,7 @@
 				0E4D676C267DE1960056A2F3 /* MovieReviewCellModel.swift in Sources */,
 				0E66A9CE267A7A0200CDAB92 /* MoviesRepository.swift in Sources */,
 				0E66A9E0267A7C1400CDAB92 /* Enums.swift in Sources */,
+				0E03803E2700537100C91434 /* NetworkError.swift in Sources */,
 				0E4D6776267DE2310056A2F3 /* ReviewsService.swift in Sources */,
 				0E66AA02267A7C2900CDAB92 /* ColorUtilities.swift in Sources */,
 				0E66A9FD267A7C2900CDAB92 /* MovieCollectionViewCell.swift in Sources */,
