@@ -1,5 +1,7 @@
 import Foundation
 import UIKit
+import Combine
+
 class SimilarMoviesViewController: UIViewController {
     
     //MARK:- Outlets
@@ -7,6 +9,7 @@ class SimilarMoviesViewController: UIViewController {
     
     //MARK:- Objects
     var viewModel:SimilarMoviesViewModel?
+    var token = [AnyCancellable]()
     
     //MARK:- LifeCycle
     override func viewDidLoad() {
@@ -39,21 +42,23 @@ class SimilarMoviesViewController: UIViewController {
     //MARK:- Similar Movie List Api
     private func callSimilarMovieListApi() {
         ActivityIndicator.shared.addActivityIndicator(self.view)
-        self.viewModel?.getSimilarMovieList() { [weak self] (success) in
-            guard let strongSelf = self else { return }
-            if success {
-                strongSelf.movieListTableView.reloadData()
-            } else {
-                let alert = UIAlertController(title: ApiKey.apiErrorTitle, message: ApiKey.apiErrorMessage, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: ApiKey.retryBtn, style: UIAlertAction.Style.default, handler: { _ in
-                    strongSelf.callSimilarMovieListApi()
-                }))
-                alert.addAction(UIAlertAction(title: ApiKey.okayBtnTitle, style: UIAlertAction.Style.default, handler: nil))
-                strongSelf.present(alert, animated: true, completion: nil)
+        _ = viewModel?.getSimilarMovieList().sink { [weak self] isSuccess in
+            DispatchQueue.main.async {[weak self] in
+                guard let strongSelf = self else { return }
+                if isSuccess {
+                    strongSelf.movieListTableView.reloadData()
+                } else {
+                    let alert = UIAlertController(title: ApiKey.apiErrorTitle, message: ApiKey.apiErrorMessage, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: ApiKey.retryBtn, style: UIAlertAction.Style.default, handler: { _ in
+                        strongSelf.callSimilarMovieListApi()
+                    }))
+                    alert.addAction(UIAlertAction(title: ApiKey.okayBtnTitle, style: UIAlertAction.Style.default, handler: nil))
+                    strongSelf.present(alert, animated: true, completion: nil)
+                }
+                ActivityIndicator.shared.stopAnimation()
+                ActivityIndicator.shared.removeActivityIndicator()
             }
-            ActivityIndicator.shared.stopAnimation()
-            ActivityIndicator.shared.removeActivityIndicator()
-        }
+        }.store(in: &token)
     }
 }
 

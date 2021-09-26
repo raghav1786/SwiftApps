@@ -1,5 +1,7 @@
 
 import UIKit
+import Combine
+
 fileprivate typealias UserDataSource     = UICollectionViewDiffableDataSource<NowPlayingViewController.Section, Movie>
 fileprivate typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<NowPlayingViewController.Section, Movie>
 
@@ -9,6 +11,7 @@ class NowPlayingViewController: UIViewController {
     
     //MARK:- Objects
     var viewModel : NowPlayingViewModel?
+    var token = [AnyCancellable]()
     
     fileprivate lazy var dataSource = makeDataSource()
     fileprivate enum Section {
@@ -40,21 +43,23 @@ class NowPlayingViewController: UIViewController {
     //MARK:- Movie List Api
     private func callMovieListApi() {
         ActivityIndicator.shared.addActivityIndicator(self.view)
-        self.viewModel?.getMovieList() { [weak self] (success) in
-            guard let strongSelf = self else { return }
-            if success {
-                strongSelf.applySnapshot()
-            } else {
-                let alert = UIAlertController(title: ApiKey.apiErrorTitle, message: ApiKey.apiErrorMessage, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: ApiKey.retryBtn, style: UIAlertAction.Style.default, handler: { _ in
-                    strongSelf.callMovieListApi()
-                }))
-                alert.addAction(UIAlertAction(title: ApiKey.okayBtnTitle, style: UIAlertAction.Style.default, handler: nil))
-                strongSelf.present(alert, animated: true, completion: nil)
+        viewModel?.getMovieList().sink { [weak self] (success) in
+            DispatchQueue.main.async {[weak self] in
+                guard let strongSelf = self else { return }
+                if success {
+                    strongSelf.applySnapshot()
+                } else {
+                    let alert = UIAlertController(title: ApiKey.apiErrorTitle, message: ApiKey.apiErrorMessage, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: ApiKey.retryBtn, style: UIAlertAction.Style.default, handler: { _ in
+                        strongSelf.callMovieListApi()
+                    }))
+                    alert.addAction(UIAlertAction(title: ApiKey.okayBtnTitle, style: UIAlertAction.Style.default, handler: nil))
+                    strongSelf.present(alert, animated: true, completion: nil)
+                }
+                ActivityIndicator.shared.stopAnimation()
+                ActivityIndicator.shared.removeActivityIndicator()
             }
-            ActivityIndicator.shared.stopAnimation()
-            ActivityIndicator.shared.removeActivityIndicator()
-        }
+        }.store(in: &token)
     }
 }
 
@@ -178,7 +183,7 @@ extension NowPlayingViewController {
 
 
 
- //MARK:- Collection View Delegate, DelegateFlowLayout
+//MARK:- Collection View Delegate, DelegateFlowLayout
 extension NowPlayingViewController : UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,
