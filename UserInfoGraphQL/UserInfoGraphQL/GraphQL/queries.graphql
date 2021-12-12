@@ -1,0 +1,5 @@
+query logIn($username: String!, $password: String!) {
+User(where: {username: {_eq: $username},password: {_eq: $password}}) {
+id
+}
+}
