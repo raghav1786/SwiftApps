@@ -1,0 +1,8 @@
+mutation signUp
+($username:String!,$password:String!,$email:String) {
+  insert_User(objects: {username: $username, password: $password, email: $email}) {
+    returning {
+      id
+    }
+  }
+}
