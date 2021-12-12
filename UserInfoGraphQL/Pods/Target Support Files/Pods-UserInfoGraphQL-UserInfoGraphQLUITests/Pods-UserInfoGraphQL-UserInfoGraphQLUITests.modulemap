@@ -1,0 +1,6 @@
+framework module Pods_UserInfoGraphQL_UserInfoGraphQLUITests {
+  umbrella header "Pods-UserInfoGraphQL-UserInfoGraphQLUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
