@@ -1,4 +1,4 @@
-## Greeetings Widget
+## Greetings Widget
 
 This is a greetings Widget to showcase time to iphone user.
 It gives Greetings of the day to user along with current time.
@@ -28,3 +28,7 @@ Greetings
 ## Owner name:
 
 Raghav Sharma
+
+###References
+https://medium.com/mindful-engineering/introducing-ios-14-widget-extension-1abaa198d183
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiItvrX5ff0AhXm4zgGHTuRCAYQFnoECAIQAQ&url=https%3A%2F%2Fdeveloper.apple.com%2Fdocumentation%2Fwidgetkit%2Fcreating-a-widget-extension&usg=AOvVaw1RQ4Sx_OPPQTgHIAt9lok_
