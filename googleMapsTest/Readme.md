@@ -2,7 +2,7 @@
 <img width="488" alt="Screenshot 2022-05-19 at 12 33 00" src="https://user-images.githubusercontent.com/53406407/169230746-31dcb77a-22d0-41f1-8aa1-01983620ff10.png">
 
 ## About
-Component demonstrates a flexible package component that will:
+demonstrates a flexible package component that will:
 1. dim the background
 2. Mask and Highlight the required View
 3. show a tooltip with the specified direction
