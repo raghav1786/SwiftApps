@@ -13,21 +13,21 @@ Dependency diagram:
 https://www.figma.com/file/yYjNdLhkMOabzh4mHJYsgJ/CW-1461?node-id=0%3A1
 
 ## About
-demonstrates a flexible package component that will:
-1. dim the background
-2. Mask and Highlight the required View
-3. show a tooltip with the specified direction
-4. tap on Next to show next tutorial.
-5. tap outside to end the tour.
+Demonstrates a flexible package component that will:
+ 1. Creates a overlay
+ 2. Mask and Highlight the required section/ view
+ 3. Show a tooltip with the specified direction
+ 4. Tap on Next to show next tutorial.
+ 5. Tap outside to end the tour.
 
 ## Requirements
 * iOS 14+
 * Swift 5.2
 
 ## Usage
-1. import this Guided Tour package to your app.
+1. Import this Guided Tour package to your app.
 2. From Parent View Controller trigger showing Tutorials Tour.
 3. Pass the dependencies required for the Tutorial  see [fetchTutorials(request: TutorialRequest)]
-4. show the list of passed tooltips for that tour.
+4. Show the list of passed tooltips for that tour.
 For more detailed explanation, check article: https://medium.com/@evandro.hoffmann/flexible-tooltips-in-ios-1ffa5d7d2f36
 Happy coding! 😀
