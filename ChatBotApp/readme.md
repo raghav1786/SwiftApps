@@ -1,11 +1,11 @@
 
-## AI Chat Bot
+## AI Chat Bot using OpenAI.
 
 This is a chat app to ask questions from open AI based chatBot. The answers are more human friendly and AI driven. 
 
 ## Key Features
 
-- we can ask queries
+- we can ask queries and get responses based on AI.
 
 
 ### Screenshots:
