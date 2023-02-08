@@ -10,7 +10,8 @@ import Combine
 
 final class ChatService {
     private enum Constants {
-        static let token = "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"
+        /// please refer to https://platform.openai.com/docs to know how to generate token
+        static let token = "Your Token here"
     }
     private let service = OpenAISwift(authToken: Constants.token)
     
