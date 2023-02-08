@@ -15,6 +15,12 @@ This is a chat app to ask questions from open AI based chatBot. The answers are 
 https://user-images.githubusercontent.com/53406407/217622349-98ca97dc-c96d-4b3e-a1ba-da5631ebbf11.mp4
 
 
+## Usage:
+
+- Set your API token from creating one [here](https://beta.openai.com/account/api-keys)
+- add the same value in ChatService.swift under constants.
+
+
 ## Architecture
 VIPER
 - Seperate network and domain layer for loose coupling the api call 
